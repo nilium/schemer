@@ -1,0 +1,573 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1C023AE418960B190036F0CA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C023AE318960B190036F0CA /* Cocoa.framework */; };
+		1C023AEE18960B190036F0CA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C023AEC18960B190036F0CA /* InfoPlist.strings */; };
+		1C023AF018960B190036F0CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C023AEF18960B190036F0CA /* main.m */; };
+		1C023AF418960B190036F0CA /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1C023AF218960B190036F0CA /* Credits.rtf */; };
+		1C023AF718960B190036F0CA /* QDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C023AF618960B190036F0CA /* QDocument.m */; };
+		1C023AFA18960B190036F0CA /* QDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C023AF818960B190036F0CA /* QDocument.xib */; };
+		1C023AFD18960B190036F0CA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C023AFB18960B190036F0CA /* MainMenu.xib */; };
+		1C023AFF18960B190036F0CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C023AFE18960B190036F0CA /* Images.xcassets */; };
+		1C023B0618960B190036F0CA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C023B0518960B190036F0CA /* XCTest.framework */; };
+		1C023B0718960B190036F0CA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C023AE318960B190036F0CA /* Cocoa.framework */; };
+		1C023B0F18960B190036F0CA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C023B0D18960B190036F0CA /* InfoPlist.strings */; };
+		1C023B1118960B190036F0CA /* SchemerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C023B1018960B190036F0CA /* SchemerTests.m */; };
+		1C1B083D18970664009F4DEF /* QFlexTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B083C18970664009F4DEF /* QFlexTokenField.m */; };
+		1C1B084018971ADB009F4DEF /* NSObject+QNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B083F18971ADB009F4DEF /* NSObject+QNull.m */; };
+		1C874273189619970013992D /* QSchemeRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C874272189619970013992D /* QSchemeRule.m */; };
+		1C87427618961B870013992D /* QScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87427518961B870013992D /* QScheme.m */; };
+		1C87427918961E9B0013992D /* NSFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87427818961E9B0013992D /* NSFilters.m */; };
+		1C87427C189621390013992D /* NSColor+QHexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87427B189621390013992D /* NSColor+QHexColor.m */; };
+		1C87428018962F830013992D /* QColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87427F18962F830013992D /* QColorWell.m */; };
+		1C8742831896303E0013992D /* QColorWellOpaque.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8742821896303E0013992D /* QColorWellOpaque.m */; };
+		1C874286189644DF0013992D /* aux.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C874285189644DF0013992D /* aux.m */; };
+		1C87428918964DA00013992D /* QRulesTableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87428818964DA00013992D /* QRulesTableData.m */; };
+		1C87428C189653630013992D /* QRulesTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87428B189653630013992D /* QRulesTableDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1C023B0818960B190036F0CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C023AD818960B190036F0CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1C023ADF18960B190036F0CA;
+			remoteInfo = Schemer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1C023AE018960B190036F0CA /* Schemer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schemer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C023AE318960B190036F0CA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		1C023AE618960B190036F0CA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		1C023AE718960B190036F0CA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1C023AE818960B190036F0CA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1C023AEB18960B190036F0CA /* Schemer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Schemer-Info.plist"; sourceTree = "<group>"; };
+		1C023AED18960B190036F0CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1C023AEF18960B190036F0CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1C023AF118960B190036F0CA /* Schemer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Schemer-Prefix.pch"; sourceTree = "<group>"; };
+		1C023AF318960B190036F0CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		1C023AF518960B190036F0CA /* QDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QDocument.h; sourceTree = "<group>"; };
+		1C023AF618960B190036F0CA /* QDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QDocument.m; sourceTree = "<group>"; };
+		1C023AF918960B190036F0CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/QDocument.xib; sourceTree = "<group>"; };
+		1C023AFC18960B190036F0CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1C023AFE18960B190036F0CA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		1C023B0418960B190036F0CA /* SchemerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SchemerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C023B0518960B190036F0CA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		1C023B0C18960B190036F0CA /* SchemerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SchemerTests-Info.plist"; sourceTree = "<group>"; };
+		1C023B0E18960B190036F0CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1C023B1018960B190036F0CA /* SchemerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchemerTests.m; sourceTree = "<group>"; };
+		1C1B083B18970664009F4DEF /* QFlexTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFlexTokenField.h; sourceTree = "<group>"; };
+		1C1B083C18970664009F4DEF /* QFlexTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFlexTokenField.m; sourceTree = "<group>"; };
+		1C1B083E18971ADB009F4DEF /* NSObject+QNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+QNull.h"; sourceTree = "<group>"; };
+		1C1B083F18971ADB009F4DEF /* NSObject+QNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+QNull.m"; sourceTree = "<group>"; };
+		1C874271189619970013992D /* QSchemeRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSchemeRule.h; sourceTree = "<group>"; };
+		1C874272189619970013992D /* QSchemeRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSchemeRule.m; sourceTree = "<group>"; };
+		1C87427418961B870013992D /* QScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QScheme.h; sourceTree = "<group>"; };
+		1C87427518961B870013992D /* QScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QScheme.m; sourceTree = "<group>"; };
+		1C87427718961E9B0013992D /* NSFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFilters.h; sourceTree = "<group>"; };
+		1C87427818961E9B0013992D /* NSFilters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFilters.m; sourceTree = "<group>"; };
+		1C87427A189621390013992D /* NSColor+QHexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+QHexColor.h"; sourceTree = "<group>"; };
+		1C87427B189621390013992D /* NSColor+QHexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+QHexColor.m"; sourceTree = "<group>"; };
+		1C87427D18962CE70013992D /* Schemer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Schemer.entitlements; sourceTree = "<group>"; };
+		1C87427E18962F830013992D /* QColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QColorWell.h; sourceTree = "<group>"; };
+		1C87427F18962F830013992D /* QColorWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QColorWell.m; sourceTree = "<group>"; };
+		1C8742811896303E0013992D /* QColorWellOpaque.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QColorWellOpaque.h; sourceTree = "<group>"; };
+		1C8742821896303E0013992D /* QColorWellOpaque.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QColorWellOpaque.m; sourceTree = "<group>"; };
+		1C874284189631780013992D /* aux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aux.h; sourceTree = "<group>"; };
+		1C874285189644DF0013992D /* aux.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = aux.m; sourceTree = "<group>"; };
+		1C87428718964DA00013992D /* QRulesTableData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRulesTableData.h; sourceTree = "<group>"; };
+		1C87428818964DA00013992D /* QRulesTableData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRulesTableData.m; sourceTree = "<group>"; };
+		1C87428A189653630013992D /* QRulesTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRulesTableDelegate.h; sourceTree = "<group>"; };
+		1C87428B189653630013992D /* QRulesTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRulesTableDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1C023ADD18960B190036F0CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C023AE418960B190036F0CA /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C023B0118960B190036F0CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C023B0718960B190036F0CA /* Cocoa.framework in Frameworks */,
+				1C023B0618960B190036F0CA /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C023AD718960B190036F0CA = {
+			isa = PBXGroup;
+			children = (
+				1C023AE918960B190036F0CA /* Schemer */,
+				1C023B0A18960B190036F0CA /* SchemerTests */,
+				1C023AE218960B190036F0CA /* Frameworks */,
+				1C023AE118960B190036F0CA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1C023AE118960B190036F0CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1C023AE018960B190036F0CA /* Schemer.app */,
+				1C023B0418960B190036F0CA /* SchemerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1C023AE218960B190036F0CA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C023AE318960B190036F0CA /* Cocoa.framework */,
+				1C023B0518960B190036F0CA /* XCTest.framework */,
+				1C023AE518960B190036F0CA /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1C023AE518960B190036F0CA /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C023AE618960B190036F0CA /* AppKit.framework */,
+				1C023AE718960B190036F0CA /* CoreData.framework */,
+				1C023AE818960B190036F0CA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		1C023AE918960B190036F0CA /* Schemer */ = {
+			isa = PBXGroup;
+			children = (
+				1C87427D18962CE70013992D /* Schemer.entitlements */,
+				1C87427718961E9B0013992D /* NSFilters.h */,
+				1C87427818961E9B0013992D /* NSFilters.m */,
+				1C023AF518960B190036F0CA /* QDocument.h */,
+				1C023AF618960B190036F0CA /* QDocument.m */,
+				1C023AF818960B190036F0CA /* QDocument.xib */,
+				1C023AFB18960B190036F0CA /* MainMenu.xib */,
+				1C023AFE18960B190036F0CA /* Images.xcassets */,
+				1C023AEA18960B190036F0CA /* Supporting Files */,
+				1C874271189619970013992D /* QSchemeRule.h */,
+				1C874272189619970013992D /* QSchemeRule.m */,
+				1C87427418961B870013992D /* QScheme.h */,
+				1C87427518961B870013992D /* QScheme.m */,
+				1C87427A189621390013992D /* NSColor+QHexColor.h */,
+				1C87427B189621390013992D /* NSColor+QHexColor.m */,
+				1C87427E18962F830013992D /* QColorWell.h */,
+				1C87427F18962F830013992D /* QColorWell.m */,
+				1C8742811896303E0013992D /* QColorWellOpaque.h */,
+				1C8742821896303E0013992D /* QColorWellOpaque.m */,
+				1C874284189631780013992D /* aux.h */,
+				1C874285189644DF0013992D /* aux.m */,
+				1C87428718964DA00013992D /* QRulesTableData.h */,
+				1C87428818964DA00013992D /* QRulesTableData.m */,
+				1C87428A189653630013992D /* QRulesTableDelegate.h */,
+				1C87428B189653630013992D /* QRulesTableDelegate.m */,
+				1C1B083B18970664009F4DEF /* QFlexTokenField.h */,
+				1C1B083C18970664009F4DEF /* QFlexTokenField.m */,
+				1C1B083E18971ADB009F4DEF /* NSObject+QNull.h */,
+				1C1B083F18971ADB009F4DEF /* NSObject+QNull.m */,
+			);
+			path = Schemer;
+			sourceTree = "<group>";
+		};
+		1C023AEA18960B190036F0CA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C023AEB18960B190036F0CA /* Schemer-Info.plist */,
+				1C023AEC18960B190036F0CA /* InfoPlist.strings */,
+				1C023AEF18960B190036F0CA /* main.m */,
+				1C023AF118960B190036F0CA /* Schemer-Prefix.pch */,
+				1C023AF218960B190036F0CA /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1C023B0A18960B190036F0CA /* SchemerTests */ = {
+			isa = PBXGroup;
+			children = (
+				1C023B1018960B190036F0CA /* SchemerTests.m */,
+				1C023B0B18960B190036F0CA /* Supporting Files */,
+			);
+			path = SchemerTests;
+			sourceTree = "<group>";
+		};
+		1C023B0B18960B190036F0CA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C023B0C18960B190036F0CA /* SchemerTests-Info.plist */,
+				1C023B0D18960B190036F0CA /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1C023ADF18960B190036F0CA /* Schemer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C023B1418960B190036F0CA /* Build configuration list for PBXNativeTarget "Schemer" */;
+			buildPhases = (
+				1C023ADC18960B190036F0CA /* Sources */,
+				1C023ADD18960B190036F0CA /* Frameworks */,
+				1C023ADE18960B190036F0CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Schemer;
+			productName = Schemer;
+			productReference = 1C023AE018960B190036F0CA /* Schemer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1C023B0318960B190036F0CA /* SchemerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C023B1718960B190036F0CA /* Build configuration list for PBXNativeTarget "SchemerTests" */;
+			buildPhases = (
+				1C023B0018960B190036F0CA /* Sources */,
+				1C023B0118960B190036F0CA /* Frameworks */,
+				1C023B0218960B190036F0CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1C023B0918960B190036F0CA /* PBXTargetDependency */,
+			);
+			name = SchemerTests;
+			productName = SchemerTests;
+			productReference = 1C023B0418960B190036F0CA /* SchemerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1C023AD818960B190036F0CA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Q;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Spifftastic;
+				TargetAttributes = {
+					1C023ADF18960B190036F0CA = {
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+					1C023B0318960B190036F0CA = {
+						TestTargetID = 1C023ADF18960B190036F0CA;
+					};
+				};
+			};
+			buildConfigurationList = 1C023ADB18960B190036F0CA /* Build configuration list for PBXProject "Schemer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1C023AD718960B190036F0CA;
+			productRefGroup = 1C023AE118960B190036F0CA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1C023ADF18960B190036F0CA /* Schemer */,
+				1C023B0318960B190036F0CA /* SchemerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1C023ADE18960B190036F0CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C023AFA18960B190036F0CA /* QDocument.xib in Resources */,
+				1C023AFF18960B190036F0CA /* Images.xcassets in Resources */,
+				1C023AEE18960B190036F0CA /* InfoPlist.strings in Resources */,
+				1C023AF418960B190036F0CA /* Credits.rtf in Resources */,
+				1C023AFD18960B190036F0CA /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C023B0218960B190036F0CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C023B0F18960B190036F0CA /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1C023ADC18960B190036F0CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C87428C189653630013992D /* QRulesTableDelegate.m in Sources */,
+				1C023AF718960B190036F0CA /* QDocument.m in Sources */,
+				1C023AF018960B190036F0CA /* main.m in Sources */,
+				1C87428018962F830013992D /* QColorWell.m in Sources */,
+				1C87427C189621390013992D /* NSColor+QHexColor.m in Sources */,
+				1C8742831896303E0013992D /* QColorWellOpaque.m in Sources */,
+				1C87427918961E9B0013992D /* NSFilters.m in Sources */,
+				1C87428918964DA00013992D /* QRulesTableData.m in Sources */,
+				1C874286189644DF0013992D /* aux.m in Sources */,
+				1C1B083D18970664009F4DEF /* QFlexTokenField.m in Sources */,
+				1C87427618961B870013992D /* QScheme.m in Sources */,
+				1C874273189619970013992D /* QSchemeRule.m in Sources */,
+				1C1B084018971ADB009F4DEF /* NSObject+QNull.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C023B0018960B190036F0CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C023B1118960B190036F0CA /* SchemerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1C023B0918960B190036F0CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1C023ADF18960B190036F0CA /* Schemer */;
+			targetProxy = 1C023B0818960B190036F0CA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1C023AEC18960B190036F0CA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C023AED18960B190036F0CA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1C023AF218960B190036F0CA /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C023AF318960B190036F0CA /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		1C023AF818960B190036F0CA /* QDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C023AF918960B190036F0CA /* Base */,
+			);
+			name = QDocument.xib;
+			sourceTree = "<group>";
+		};
+		1C023AFB18960B190036F0CA /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C023AFC18960B190036F0CA /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		1C023B0D18960B190036F0CA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C023B0E18960B190036F0CA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1C023B1218960B190036F0CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1C023B1318960B190036F0CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		1C023B1518960B190036F0CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Schemer/Schemer.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Schemer/Schemer-Prefix.pch";
+				INFOPLIST_FILE = "Schemer/Schemer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1C023B1618960B190036F0CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Schemer/Schemer.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Schemer/Schemer-Prefix.pch";
+				INFOPLIST_FILE = "Schemer/Schemer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		1C023B1818960B190036F0CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Schemer.app/Contents/MacOS/Schemer";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Schemer/Schemer-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SchemerTests/SchemerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		1C023B1918960B190036F0CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Schemer.app/Contents/MacOS/Schemer";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Schemer/Schemer-Prefix.pch";
+				INFOPLIST_FILE = "SchemerTests/SchemerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1C023ADB18960B190036F0CA /* Build configuration list for PBXProject "Schemer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C023B1218960B190036F0CA /* Debug */,
+				1C023B1318960B190036F0CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C023B1418960B190036F0CA /* Build configuration list for PBXNativeTarget "Schemer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C023B1518960B190036F0CA /* Debug */,
+				1C023B1618960B190036F0CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C023B1718960B190036F0CA /* Build configuration list for PBXNativeTarget "SchemerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C023B1818960B190036F0CA /* Debug */,
+				1C023B1918960B190036F0CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1C023AD818960B190036F0CA /* Project object */;
+}
