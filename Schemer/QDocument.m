@@ -207,51 +207,6 @@ static NSArray *observedSchemeRulePaths()
 }
 
 
-#if 0
-
-/*
- Implementation of these methods currently commented out because it doesn't allow the document
- to attach to a URL for some reason.
- */
-
-- (NSData *)dataOfType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
-{
-  NSDictionary *plist = [self.scheme toPropertyList];
-
-  if (!plist) {
-    NSDictionary *info = @{
-      @"type": typeName
-    };
-    *outError = [NSError errorWithDomain:@"QInvalidPList" code:2 userInfo:info];
-    return NO;
-  }
-
-  return [NSPropertyListSerialization
-          dataWithPropertyList:plist
-          format:NSPropertyListXMLFormat_v1_0
-          options:0
-          error:outError];
-}
-
-- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
-{
-  NSDictionary *plist = [NSPropertyListSerialization
-                         propertyListWithData:data
-                         options:NSPropertyListImmutable
-                         format:NULL
-                         error:outError];
-  if (!plist) {
-    return NO;
-  }
-
-  self.scheme = [[QScheme alloc] initWithPropertyList:plist document:self];
-
-  return YES;
-}
-
-#endif
-
-
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 {
   NSDictionary *plist = [self.scheme toPropertyList];
