@@ -77,6 +77,18 @@ enum {
 }
 
 
+static
+NSFont *
+convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSFontManager *manager)
+{
+  if (flag) {
+    return [manager convertFont:font toHaveTrait:trait];
+  } else {
+    return [manager convertFont:font toNotHaveTrait:trait];
+  }
+}
+
+
 - (void)bindView:(NSView *)view toRule:(QSchemeRule *)rule forColumn:(int)column
 {
   NSColorWell *well = nil;
@@ -84,13 +96,28 @@ enum {
   case COL_NAME: {
     NSTextField *text = (NSTextField *)view;
     NSFont *font = [NSFont userFixedPitchFontOfSize:0.0];
+    uint32_t flags = rule.flags.unsignedIntValue;
+
+    NSFontManager *manager = [NSFontManager sharedFontManager];
+    font = convertFontWithOptionalTrait(flags & QBoldFlag, NSBoldFontMask, font, manager);
+    font = convertFontWithOptionalTrait(flags & QItalicFlag, NSItalicFontMask, font, manager);
+
     text.font = font;
     text.textColor = colorIsDefined(rule.foreground) ? rule.foreground : _scheme.foregroundColor;
     text.backgroundColor =
       colorIsDefined(rule.background)
       ? blendColors(_scheme.backgroundColor, rule.background)
       : [_scheme.backgroundColor colorWithAlphaComponent:0.75];
-    text.stringValue = rule.name;
+
+    if (flags & QUnderlineFlag) {
+      NSAttributedString *name =
+      	[[NSAttributedString alloc]
+         initWithString:rule.name
+         attributes:@{ NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle) }];
+      text.attributedStringValue = name;
+    } else {
+      text.stringValue = rule.name;
+    }
   } break;
   case COL_FOREGROUND: {
     well = (NSColorWell *)view;
