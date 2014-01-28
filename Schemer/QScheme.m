@@ -61,17 +61,16 @@ getRulesDictionaries(NSArray *settings)
 {
   if ((self = [super init])) {
     NSColor *black = [NSColor.blackColor forScheme];
-    self.foregroundColor = black;
-    self.backgroundColor = [NSColor.whiteColor forScheme];
-    self.lineHighlightColor = [NSColor colorWithWhite:0.0f alpha:0.07f];
-    self.selectionColor = [[NSColor selectedTextBackgroundColor] forScheme];
-    self.selectionBorderColor = [self.selectionColor colorWithAlphaComponent:0.0f];
-    self.inactiveSelectionColor = [self.selectionColor colorWithAlphaComponent:0.5f];
-    self.invisiblesColor = [[NSColor colorWithWhite:0.75f alpha:1.0f] forScheme];
-    self.caretColor = black;
-    self.uuid = [NSUUID UUID];
-
-    self.rules = @[];
+    self.foregroundColor            = black;
+    self.backgroundColor            = [NSColor.whiteColor forScheme];
+    self.lineHighlightColor         = [NSColor colorWithWhite:0.0f alpha:0.07f];
+    self.selectionColor             = [[NSColor selectedTextBackgroundColor] forScheme];
+    self.selectionBorderColor       = [self.selectionColor colorWithAlphaComponent:0.0f];
+    self.inactiveSelectionColor     = [self.selectionColor colorWithAlphaComponent:0.5f];
+    self.invisiblesColor            = [[NSColor colorWithWhite:0.75f alpha:1.0f] forScheme];
+    self.caretColor                 = black;
+    self.uuid                       = [NSUUID UUID];
+    self.rules                      = @[];
   }
   return self;
 }
@@ -88,14 +87,16 @@ getRulesDictionaries(NSArray *settings)
     }
 
     NSDictionary *settings      = baseRules[@"settings"];
-    self.foregroundColor        = [colorSetting(settings, @"foreground", self.foregroundColor) colorWithAlphaComponent:1.0];
-    self.backgroundColor        = [colorSetting(settings, @"background", self.backgroundColor) colorWithAlphaComponent:1.0];
-    self.lineHighlightColor     = colorSetting(settings, @"lineHighlight", self.lineHighlightColor);
-    self.selectionColor         = colorSetting(settings, @"selection", self.selectionColor);
-    self.selectionBorderColor   = colorSetting(settings, @"selectionBorder", self.selectionBorderColor);
-    self.inactiveSelectionColor = colorSetting(settings, @"inactiveSelection", self.inactiveSelectionColor);
-    self.invisiblesColor        = colorSetting(settings, @"invisibles", self.invisiblesColor);
-    self.caretColor             = colorSetting(settings, @"caret", self.caretColor);
+    self.foregroundColor        = [colorSetting(settings, @"foreground",        self.foregroundColor)
+                                    colorWithAlphaComponent:1.0];
+    self.backgroundColor        = [colorSetting(settings, @"background",        self.backgroundColor)
+                                   colorWithAlphaComponent:1.0];
+    self.lineHighlightColor     = colorSetting(settings,  @"lineHighlight",     self.lineHighlightColor);
+    self.selectionColor         = colorSetting(settings,  @"selection",         self.selectionColor);
+    self.selectionBorderColor   = colorSetting(settings,  @"selectionBorder",   self.selectionBorderColor);
+    self.inactiveSelectionColor = colorSetting(settings,  @"inactiveSelection", self.inactiveSelectionColor);
+    self.invisiblesColor        = colorSetting(settings,  @"invisibles",        self.invisiblesColor);
+    self.caretColor             = colorSetting(settings,  @"caret",             self.caretColor);
 
     self.rules = [rules mappedArrayUsingBlock:^id(id obj) {
       return [[QSchemeRule alloc] initWithPropertyList:obj];
@@ -106,6 +107,7 @@ getRulesDictionaries(NSArray *settings)
       ? [[NSUUID alloc] initWithUUIDString:baseRules[@"uuid"]]
       : [NSUUID UUID];
   }
+
   return self;
 }
 

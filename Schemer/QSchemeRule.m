@@ -67,11 +67,11 @@ schemeFlagStringForFlags(uint32_t flags)
 
 - (id)init {
   if ((self = [super init])) {
-    self.name = @"Unnamed Rule";
-    self.selectors = @[];
+    self.name       = @"Unnamed Rule";
+    self.selectors  = @[];
     self.foreground = [NSColor colorWithWhite:0.0f alpha:0.0f];
     self.background = [NSColor colorWithWhite:1.0f alpha:0.0f];
-    self.flags = @(QNoFlags);
+    self.flags      = @(QNoFlags);
   }
   return self;
 }
