@@ -14,8 +14,6 @@
 
 @interface QScheme : NSObject <NSCopying>
 
-@property (copy) NSString *name;
-
 // Colors
 @property (copy) NSColor *foregroundColor;
 @property (copy) NSColor *backgroundColor;

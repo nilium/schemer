@@ -65,8 +65,6 @@ getRulesDictionaries(NSArray *settings)
 - (id)init
 {
   if ((self = [super init])) {
-    self.name = @"Unnamed Scheme";
-
     NSColor *black = [NSColor.blackColor forScheme];
     self.foregroundColor = black;
     self.backgroundColor = [NSColor.whiteColor forScheme];
@@ -96,7 +94,6 @@ getRulesDictionaries(NSArray *settings)
 - (id)initWithPropertyList:(NSDictionary *)plist document:(NSDocument *)doc
 {
   if ((self = [self initWithDocument:doc])) {
-    self.name = plist[@"name"];
     NSDictionary *baseRules = getBaseRuleDictionary(plist[@"settings"]);
     NSArray *rules = getRulesDictionaries(plist[@"settings"]);
 
@@ -131,7 +128,6 @@ getRulesDictionaries(NSArray *settings)
 {
   QScheme *scheme = [[[self class] alloc] initWithDocument:_document];
   if (scheme) {
-    scheme.name = self.name;
     scheme.uuid = self.uuid;
 
     scheme.foregroundColor        = self.foregroundColor;
@@ -153,7 +149,6 @@ getRulesDictionaries(NSArray *settings)
 {
   NSMutableDictionary *plist = [NSMutableDictionary new];
 
-  plist[@"name"] = self.name;
   plist[@"uuid"] = self.uuid.UUIDString;
 
   NSMutableArray *baseRules = [NSMutableArray arrayWithCapacity:[self.rules count] + 1];

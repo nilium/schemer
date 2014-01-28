@@ -42,7 +42,6 @@ observedSchemePaths()
   dispatch_once(&onceToken, ^{
     paths =
     @[
-      @"name",
       @"foregroundColor",
       @"backgroundColor",
       @"lineHighlightColor",
@@ -50,8 +49,7 @@ observedSchemePaths()
       @"selectionBorderColor",
       @"inactiveSelectionColor",
       @"invisiblesColor",
-      @"caretColor",
-      @"uuid"
+      @"caretColor"
     ];
   });
   return paths;
@@ -263,7 +261,11 @@ static NSArray *observedSchemeRulePaths()
     return NO;
   }
 
-  if (![plist writeToURL:url atomically:NO]) {
+  NSString *name = [url.lastPathComponent stringByDeletingPathExtension];
+  NSMutableDictionary *plistWithName = [plist mutableCopy];
+  plistWithName[@"name"] = name;
+
+  if (![plistWithName writeToURL:url atomically:NO]) {
     NSDictionary *info = @{
       @"url": url,
       @"type": typeName
@@ -338,8 +340,6 @@ static NSArray *observedSchemeRulePaths()
       if (self.rulesTable) {
         [self.rulesTable reloadData];
       }
-    } else if ([keyPath isEqualToString:@"name"]) {
-      self.displayName = self.scheme.name;
     }
   } else if ([object isKindOfClass:[QSchemeRule class]]) {
     // a rule changed
