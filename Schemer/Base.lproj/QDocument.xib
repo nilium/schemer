@@ -6,6 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="QDocument">
             <connections>
+                <outlet property="removeSelectorsButton" destination="v4y-hA-oIX" id="o3R-Cw-qz8"/>
                 <outlet property="rulesTable" destination="0by-wg-npY" id="POY-te-eis"/>
                 <outlet property="selectorData" destination="sEG-g5-RsI" id="kFl-6X-xhf"/>
                 <outlet property="selectorTable" destination="ks0-7w-7Yu" id="jVv-zg-aTL"/>
