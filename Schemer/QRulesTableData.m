@@ -30,8 +30,10 @@
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-  QSchemeRule *rule = _scheme.rules[row];
-  return [rule valueForKey:tableColumn.identifier];
+  // Used to return the actual data for the column, but it's not really being used, this just
+  // returns nil, now, since doing otherwise would cause the tableView to try to set the object
+  // value of the controls to something and that's not pretty.
+  return nil;
 }
 
 @end
