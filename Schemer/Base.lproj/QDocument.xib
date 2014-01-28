@@ -216,6 +216,11 @@
                                         </buttonCell>
                                         <connections>
                                             <action selector="appendNewSelector:" target="-2" id="bHE-K7-iYd"/>
+                                            <binding destination="sEG-g5-RsI" name="enabled" keyPath="self.rule" id="otC-dV-ku6">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                </dictionary>
+                                            </binding>
                                         </connections>
                                     </button>
                                     <button appearanceType="lightContent" translatesAutoresizingMaskIntoConstraints="NO" id="v4y-hA-oIX">
