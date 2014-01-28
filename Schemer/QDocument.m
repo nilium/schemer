@@ -171,7 +171,7 @@ static NSArray *observedSchemeRulePaths()
   __weak NSTableView *selectorTable = self.selectorTable;
   __weak NSButton *removeRulesButton = self.removeSelectedRulesButton;
   __weak QSelectorTableSource *selectorData = self.selectorData;
-  void (^block)(NSNotification *) = ^(NSNotification *note) {
+  void (^ruleSelectedBlock)(NSNotification *) = ^(NSNotification *note) {
     NSTableView *view = (NSTableView *)note.object;
     NSIndexSet *indices = view ? view.selectedRowIndexes : nil;
     QRulesTableDelegate *delegate = view ? [note.object delegate] : nil;
@@ -201,7 +201,7 @@ static NSArray *observedSchemeRulePaths()
   self.rulesTableObserverKey = [center addObserverForName:NSTableViewSelectionDidChangeNotification
                                          object:self.rulesTable
                                           queue:[NSOperationQueue mainQueue]
-                                     usingBlock:block];
+                                     usingBlock:ruleSelectedBlock];
 }
 
 
