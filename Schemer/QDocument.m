@@ -116,6 +116,10 @@ static NSArray *observedSchemeRulePaths()
     [center removeObserver:self.rulesTableObserverKey];
   }
 
+  if (self.selectorTableObserverKey) {
+    [center removeObserver:self.selectorTableObserverKey];
+  }
+
   self.scheme = nil;
 
   [self removeObserver:self forKeyPath:@"scheme"];
@@ -157,6 +161,11 @@ static NSArray *observedSchemeRulePaths()
   if (self.rulesTableObserverKey) {
     [center removeObserver:self.rulesTableObserverKey];
     self.rulesTableObserverKey = nil;
+  }
+
+  if (self.selectorTableObserverKey) {
+    [center removeObserver:self.selectorTableObserverKey];
+    self.selectorTableObserverKey = nil;
   }
 
   __weak NSTableView *selectorTable = self.selectorTable;
