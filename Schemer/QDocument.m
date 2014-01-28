@@ -476,6 +476,21 @@ static NSArray *observedSchemeRulePaths()
 
 
 - (IBAction)removeSelectedSelectors:(id)sender {
+  // TODO: Refactor both append/remove methods into calls to something generic for this purpose
+  NSTableView *table = self.selectorTable;
+  QSchemeRule *rule = self.selectorData.rule;
+  if (rule && table) {
+    NSIndexSet *indices = table.selectedRowIndexes;
+
+    if ([indices count]) {
+      NSMutableArray *selectors = [rule.selectors mutableCopy];
+      [selectors removeObjectsAtIndexes:indices];
+      [table beginUpdates];
+      rule.selectors = selectors;
+      [table removeRowsAtIndexes:indices withAnimation:NSTableViewAnimationSlideLeft];
+      [table endUpdates];
+    }
+  }
 }
 
 @end
