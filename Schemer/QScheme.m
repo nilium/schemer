@@ -13,6 +13,11 @@
 #import "aux.h"
 
 
+static id (^const copyRuleBlock)(id) = ^(id obj) {
+  return [obj copy];
+};
+
+
 static
 BOOL
 isBaseRuleDictionary(NSDictionary *rule)
@@ -112,24 +117,27 @@ getRulesDictionaries(NSArray *settings)
 }
 
 
+- (id)initWithScheme:(QScheme *)scheme
+{
+  if ((self = [self init]) && scheme) {
+    self.foregroundColor        = scheme.foregroundColor;
+    self.backgroundColor        = scheme.backgroundColor;
+    self.lineHighlightColor     = scheme.lineHighlightColor;
+    self.selectionColor         = scheme.selectionColor;
+    self.selectionBorderColor   = scheme.selectionBorderColor;
+    self.inactiveSelectionColor = scheme.inactiveSelectionColor;
+    self.invisiblesColor        = scheme.invisiblesColor;
+    self.caretColor             = scheme.caretColor;
+    self.rules                  = [scheme.rules mappedArrayUsingBlock:copyRuleBlock];
+    self.uuid                   = scheme.uuid;
+  }
+  return self;
+}
+
+
 - (id)copyWithZone:(NSZone *)zone
 {
-  QScheme *scheme = [[self class] new];
-  if (scheme) {
-    scheme.uuid = self.uuid;
-
-    scheme.foregroundColor        = self.foregroundColor;
-    scheme.backgroundColor        = self.backgroundColor;
-    scheme.lineHighlightColor     = self.lineHighlightColor;
-    scheme.selectionColor         = self.selectionColor;
-    scheme.selectionBorderColor   = self.selectionBorderColor;
-    scheme.inactiveSelectionColor = self.inactiveSelectionColor;
-    scheme.invisiblesColor        = self.invisiblesColor;
-    scheme.caretColor             = self.caretColor;
-
-    scheme.rules = [self.rules mappedArrayUsingBlock:^id(id obj) { return [obj copy]; }];
-  }
-  return scheme;
+  return [[self.class alloc] initWithScheme:self];
 }
 
 

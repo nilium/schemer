@@ -30,6 +30,7 @@
 
 - (id)init;
 - (id)initWithPropertyList:(NSDictionary *)plist;
+- (id)initWithScheme:(QScheme *)scheme;
 
 - (NSDictionary *)toPropertyList;
 
