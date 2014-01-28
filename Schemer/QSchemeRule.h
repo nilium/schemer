@@ -25,6 +25,7 @@ typedef NS_ENUM(uint32_t, QSchemeRuleFlags) {
 
 - (id)init;
 - (id)initWithPropertyList:(NSDictionary *)plist;
+- (id)initWithRule:(QSchemeRule *)rule;
 
 - (NSDictionary *)toPropertyList;
 

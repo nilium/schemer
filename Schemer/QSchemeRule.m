@@ -77,17 +77,22 @@ schemeFlagStringForFlags(uint32_t flags)
 }
 
 
+- (id)initWithRule:(QSchemeRule *)rule
+{
+  if ((self = [self init]) && rule) {
+    self.name       = rule.name;
+    self.selectors  = rule.selectors;
+    self.foreground = rule.foreground;
+    self.background = rule.background;
+    self.flags      = rule.flags;
+  }
+  return self;
+}
+
+
 - (id)copyWithZone:(NSZone *)zone
 {
-  QSchemeRule *rule = [[self class] new];
-  if (rule) {
-    rule.name = self.name;
-    rule.foreground = self.foreground;
-    rule.background = self.background;
-    rule.selectors = self.selectors;
-    rule.flags = self.flags;
-  }
-  return rule;
+  return [[self.class alloc] initWithRule:self];
 }
 
 
