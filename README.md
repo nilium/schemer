@@ -5,6 +5,8 @@ Schemer is a simple color scheme editor for TextMate themes. It's intended for u
 
 At the moment, it's a work in progress and some features may not work or may be broken. It's not advised that you just throw builds of it at your favorite un-backed-up color scheme because I can't guarantee its safety.
 
+![Schemer Screenshot](https://raw.github.com/nilium/schemer/master/screenshot.png)
+
 
 Contributing
 ------------------------------------------------------------------------------
