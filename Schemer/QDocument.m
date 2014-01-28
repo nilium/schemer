@@ -461,18 +461,11 @@ static NSArray *observedSchemeRulePaths()
 - (IBAction)appendNewRule:(id)sender {
   NSTableView *table = self.rulesTable;
   if (table) {
-    [table beginUpdates];
     self.scheme.rules = [self.scheme.rules arrayByAddingObject:[[QSchemeRule alloc] initWithDocument:self]];
     NSIndexSet *indices = [NSIndexSet indexSetWithIndex:[self.scheme.rules count] - 1];
     [table insertRowsAtIndexes:indices withAnimation:0];
     [table selectRowIndexes:indices byExtendingSelection:NO];
-    [table endUpdates];
-
-    __weak NSTableView *weakTable = table;
-    NSUInteger row = indices.lastIndex;
-    [NSOperationQueue.mainQueue addOperationWithBlock:^{
-      [weakTable scrollRowToVisible:row];
-    }];
+    [table scrollRowToVisible:indices.lastIndex];
   }
 }
 
@@ -485,10 +478,8 @@ static NSArray *observedSchemeRulePaths()
     if ([indices count]) {
       NSMutableArray *rules = [self.scheme.rules mutableCopy];
       [rules removeObjectsAtIndexes:indices];
-      [table beginUpdates];
       self.scheme.rules = rules;
       [table removeRowsAtIndexes:indices withAnimation:NSTableViewAnimationSlideLeft];
-      [table endUpdates];
     }
   }
 }
