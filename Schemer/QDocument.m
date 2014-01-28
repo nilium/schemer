@@ -178,6 +178,12 @@ static NSArray *observedSchemeRulePaths()
 
 #pragma mark NSDocument
 
++ (BOOL)usesUbiquitousStorage
+{
+  return NO;
+}
+
+
 - (NSString *)windowNibName
 {
   return @"QDocument";
