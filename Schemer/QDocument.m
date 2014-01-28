@@ -335,13 +335,15 @@ static NSArray *observedSchemeRulePaths()
   } else if (object == self.scheme) {
     [self updateChangeCount:NSChangeDone];
 
-    if ([keyPath isEqual:@"rules"]) {
+    if ([keyPath isEqualToString:@"rules"]) {
       [self rebindObservationFromOldRules:[change[NSKeyValueChangeOldKey] selfIfNotNull]
                                toNewRules:[change[NSKeyValueChangeNewKey] selfIfNotNull]];
 
       if (self.rulesTable) {
         [self.rulesTable reloadData];
       }
+    } else if ([keyPath isEqualToString:@"name"]) {
+      self.displayName = self.scheme.name;
     }
   } else if ([object isKindOfClass:[QSchemeRule class]]) {
     // a rule changed
