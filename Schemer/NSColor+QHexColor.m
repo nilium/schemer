@@ -26,11 +26,7 @@ q_ftoub(CGFloat f)
 
 - (NSColor *)forScheme
 {
-  NSColorSpace *deviceSpace = [NSColorSpace deviceRGBColorSpace];
-  if (self.colorSpace != deviceSpace) {
-    return [self colorUsingColorSpace:deviceSpace];
-  }
-  return self;
+  return [self colorUsingColorSpaceName:NSDeviceRGBColorSpace];
 }
 
 + (NSColor *)colorFromHexString:(NSString *)hex
