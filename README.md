@@ -19,12 +19,12 @@ General rules for style can be picked up from the source code, but a quick rundo
 - Prefer camelCase. Though the project started with snake_case for non-ObjC identifiers, so there's some cleanup left to do and you'll see those littered around, don't do that.
 - And the weirdest one you'll have trouble with: the qualifier and attributes, return type, and function signature for C functions all go on separate lines. For example:
 
-    static
-    void *
-    returnNull()
-    {
-        return NULL;
-    }
+        static
+        void *
+        returnNull()
+        {
+            return NULL;
+        }
 
 There might be other things, but that covers the important stuff. Try to avoid Xcode's auto-formatting because it will drive you insane when trying to maintain the code style.
 
