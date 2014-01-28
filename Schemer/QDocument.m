@@ -14,6 +14,7 @@
 #import "NSFilters.h"
 #import "NSObject+QNull.h"
 #import "QSelectorTableSource.h"
+#import "QAppDelegate.h"
 
 
 static
@@ -107,13 +108,16 @@ static NSArray *observedSchemeRulePaths()
 
 - (void)dealloc
 {
+  NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+
   if (self.rulesTableObserverKey) {
-    [[NSNotificationCenter defaultCenter] removeObserver:self.rulesTableObserverKey];
+    [center removeObserver:self.rulesTableObserverKey];
   }
 
   self.scheme = nil;
 
   [self removeObserver:self forKeyPath:@"scheme"];
+  [center removeObserver:self name:QFontChangeNotification object:nil];
 }
 
 
@@ -123,8 +127,22 @@ static NSArray *observedSchemeRulePaths()
       NSUInteger options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
       [self addObserver:self forKeyPath:@"scheme" options:options context:NULL];
       self.scheme = [[QScheme alloc] initWithDocument:self];
+
+      [[NSNotificationCenter defaultCenter]
+       addObserver:self selector:@selector(userFontChanged:)
+       name:QFontChangeNotification
+       object:nil];
     }
     return self;
+}
+
+
+- (void)userFontChanged:(NSNotification *)note
+{
+  NSTableView *rulesTable = self.rulesTable;
+  if (rulesTable) {
+    [rulesTable reloadData];
+  }
 }
 
 
