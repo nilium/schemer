@@ -174,7 +174,7 @@ convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSF
   rule.background = well.color;
   [rule didChangeValueForKey:@"background"];
 
-  [self updateRuleColorAtRow:row];
+  [self updateRuleLabelAtRow:row];
 }
 
 
@@ -193,11 +193,11 @@ convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSF
   rule.foreground = well.color;
   [rule didChangeValueForKey:@"foreground"];
 
-  [self updateRuleColorAtRow:row];
+  [self updateRuleLabelAtRow:row];
 }
 
 
-- (void)updateRuleColorAtRow:(NSInteger)row
+- (void)updateRuleLabelAtRow:(NSInteger)row
 {
   NSTableColumn *nameCol = [_tableView tableColumnWithIdentifier:@"name"];
   NSInteger column = [_tableView.tableColumns indexOfObject:nameCol];
