@@ -484,4 +484,25 @@ static NSArray *observedSchemeRulePaths()
   }
 }
 
+
+- (IBAction)appendNewSelector:(id)sender {
+  NSTableView *table = self.selectorTable;
+  QSchemeRule *rule = self.selectorData.rule;
+  if (rule && table) {
+//    self.scheme.rules = [self.scheme.rules arrayByAddingObject:[[QSchemeRule alloc] initWithDocument:self]];
+    [table beginUpdates];
+    rule.selectors = [rule.selectors arrayByAddingObject:@"scope"];
+    NSIndexSet *indices = [NSIndexSet indexSetWithIndex:[rule.selectors count] - 1];
+    [table insertRowsAtIndexes:indices withAnimation:0];
+    [table endUpdates];
+    [table selectRowIndexes:indices byExtendingSelection:NO];
+    [table scrollRowToVisible:indices.lastIndex];
+    [table editColumn:0 row:indices.lastIndex withEvent:nil select:YES];
+  }
+}
+
+
+- (IBAction)removeSelectedSelectors:(id)sender {
+}
+
 @end
