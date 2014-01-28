@@ -67,14 +67,15 @@ getRulesDictionaries(NSArray *settings)
   if ((self = [super init])) {
     self.name = @"Unnamed Scheme";
 
-    self.foregroundColor = [NSColor blackColor];
-    self.backgroundColor = [NSColor whiteColor];
+    NSColor *black = [NSColor.blackColor forScheme];
+    self.foregroundColor = black;
+    self.backgroundColor = [NSColor.whiteColor forScheme];
     self.lineHighlightColor = [NSColor colorWithWhite:0.0f alpha:0.07f];
-    self.selectionColor = [NSColor selectedTextColor];
+    self.selectionColor = [[NSColor selectedTextBackgroundColor] forScheme];
     self.selectionBorderColor = [self.selectionColor colorWithAlphaComponent:0.0f];
     self.inactiveSelectionColor = [self.selectionColor colorWithAlphaComponent:0.5f];
-    self.invisiblesColor = [NSColor colorWithWhite:0.75f alpha:1.0f];
-    self.caretColor = [NSColor blackColor];
+    self.invisiblesColor = [[NSColor colorWithWhite:0.75f alpha:1.0f] forScheme];
+    self.caretColor = black;
     self.uuid = [NSUUID UUID];
 
     self.rules = @[];
