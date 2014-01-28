@@ -61,3 +61,5 @@ Schemer is licensed under a simple two-clause BSD license:
 > THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 > (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 > OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+You can also read [the current license](https://github.com/nilium/schemer/blob/master/COPYING) on GitHub.
