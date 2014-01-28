@@ -18,6 +18,11 @@ static id (^const copyRuleBlock)(id) = ^(id obj) {
 };
 
 
+static id (^const convertPListToRuleBlock)(id) = ^id(id obj) {
+  return [[QSchemeRule alloc] initWithPropertyList:obj];
+};
+
+
 static
 BOOL
 isBaseRuleDictionary(NSDictionary *rule)
@@ -83,6 +88,12 @@ getRulesDictionaries(NSArray *settings)
 
 - (id)initWithPropertyList:(NSDictionary *)plist
 {
+  static dispatch_queue_t conversion_queue = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    conversion_queue = dispatch_queue_create("net.spifftastic.schemer.convert", DISPATCH_QUEUE_CONCURRENT);
+  });
+
   if ((self = [self init])) {
     NSDictionary *baseRules = getBaseRuleDictionary(plist[@"settings"]);
     NSArray *rules = getRulesDictionaries(plist[@"settings"]);
@@ -103,9 +114,7 @@ getRulesDictionaries(NSArray *settings)
     self.invisiblesColor        = colorSetting(settings,  @"invisibles",        self.invisiblesColor);
     self.caretColor             = colorSetting(settings,  @"caret",             self.caretColor);
 
-    self.rules = [rules mappedArrayUsingBlock:^id(id obj) {
-      return [[QSchemeRule alloc] initWithPropertyList:obj];
-    }];
+    self.rules = [rules mappedArrayUsingBlock:convertPListToRuleBlock queue:conversion_queue stride:8];
 
     self.uuid =
       baseRules[@"uuid"]
