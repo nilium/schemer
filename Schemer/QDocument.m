@@ -79,7 +79,7 @@ static NSArray *observedSchemeRulePaths()
 
 @interface QRulesTableDelegate ()
 
-@property (strong, readwrite) QSchemeRule *selectedRule;
+@property (weak, readwrite) QSchemeRule *selectedRule;
 
 @end
 
