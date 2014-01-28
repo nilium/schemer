@@ -83,6 +83,8 @@ enum {
   switch (column) {
   case COL_NAME: {
     NSTextField *text = (NSTextField *)view;
+    NSFont *font = [NSFont userFixedPitchFontOfSize:0.0];
+    text.font = font;
     text.textColor = colorIsDefined(rule.foreground) ? rule.foreground : _scheme.foregroundColor;
     text.backgroundColor =
       colorIsDefined(rule.background)
