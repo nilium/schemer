@@ -187,25 +187,4 @@ getRulesDictionaries(NSArray *settings)
   });
 }
 
-
-- (void)didChange:(NSKeyValueChange)changeKind valuesAtIndexes:(NSIndexSet *)indexes forKey:(NSString *)key
-{
-  [self notifyDocumentChange];
-  [super didChange:changeKind valuesAtIndexes:indexes forKey:key];
-}
-
-
-- (void)didChangeValueForKey:(NSString *)key
-{
-  [self notifyDocumentChange];
-  [super didChangeValueForKey:key];
-}
-
-
--(void)didChangeValueForKey:(NSString *)key withSetMutation:(NSKeyValueSetMutationKind)mutationKind usingObjects:(NSSet *)objects
-{
-  [self notifyDocumentChange];
-  [super didChangeValueForKey:key withSetMutation:mutationKind usingObjects:objects];
-}
-
 @end
