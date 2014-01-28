@@ -96,7 +96,7 @@ static NSArray *observedSchemeRulePaths()
 @property (weak) IBOutlet NSTableView *selectorTable;
 @property (strong) IBOutlet QSelectorTableSource *selectorData;
 
-@property (strong) id observerKey;
+@property (strong) id rulesTableObserverKey;
 
 @end
 
@@ -107,8 +107,8 @@ static NSArray *observedSchemeRulePaths()
 
 - (void)dealloc
 {
-  if (self.observerKey) {
-    [[NSNotificationCenter defaultCenter] removeObserver:self.observerKey];
+  if (self.rulesTableObserverKey) {
+    [[NSNotificationCenter defaultCenter] removeObserver:self.rulesTableObserverKey];
   }
 
   self.scheme = nil;
@@ -134,9 +134,9 @@ static NSArray *observedSchemeRulePaths()
 
   NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 
-  if (self.observerKey) {
-    [center removeObserver:self.observerKey];
-    self.observerKey = nil;
+  if (self.rulesTableObserverKey) {
+    [center removeObserver:self.rulesTableObserverKey];
+    self.rulesTableObserverKey = nil;
   }
 
   __weak NSTableView *selectorTable = self.selectorTable;
@@ -169,7 +169,7 @@ static NSArray *observedSchemeRulePaths()
   self.rulesTable.doubleAction = @selector(doubleClickedTableView:);
   self.rulesTable.delegate = self.rulesTableDelegate;
   self.rulesTable.dataSource = self.rulesTableData;
-  self.observerKey = [center addObserverForName:NSTableViewSelectionDidChangeNotification
+  self.rulesTableObserverKey = [center addObserverForName:NSTableViewSelectionDidChangeNotification
                                          object:self.rulesTable
                                           queue:[NSOperationQueue mainQueue]
                                      usingBlock:block];
