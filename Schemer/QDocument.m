@@ -99,6 +99,7 @@ static NSArray *observedSchemeRulePaths()
 @property (weak) IBOutlet NSButton *removeSelectorsButton;
 
 @property (strong) id rulesTableObserverKey;
+@property (strong) id selectorTableObserverKey;
 
 @end
 
