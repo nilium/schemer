@@ -19,7 +19,7 @@ extern NSString *const QSelectedRules;
 
 @interface QRulesTableDelegate : NSObject <NSTableViewDelegate, NSTextFieldDelegate>
 
-@property (readonly) QSchemeRule *selectedRule;
+@property (readonly, weak) QSchemeRule *selectedRule;
 
 - (id)initWithScheme:(QScheme *)scheme tableView:(NSTableView *)view;
 - (void)doubleClickedTableView:(NSTableView *)tableView;

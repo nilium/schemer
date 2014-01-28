@@ -26,9 +26,9 @@ q_ftoub(CGFloat f)
 
 - (NSColor *)forScheme
 {
-  NSColorSpace *generic = [NSColorSpace genericRGBColorSpace];
-  if (self.colorSpace != generic) {
-    return [self colorUsingColorSpace:generic];
+  NSColorSpace *deviceSpace = [NSColorSpace deviceRGBColorSpace];
+  if (self.colorSpace != deviceSpace) {
+    return [self colorUsingColorSpace:deviceSpace];
   }
   return self;
 }

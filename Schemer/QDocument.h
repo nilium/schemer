@@ -9,9 +9,11 @@
 #import <Cocoa/Cocoa.h>
 
 @class QScheme;
+@class QRulesTableDelegate;
 
 @interface QDocument : NSDocument <NSTokenFieldDelegate>
 
 @property (strong, readonly) QScheme *scheme;
+@property (strong, readonly) QRulesTableDelegate *rulesTableDelegate;
 
 @end

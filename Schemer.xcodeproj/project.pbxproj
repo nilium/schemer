@@ -30,6 +30,7 @@
 		1C874286189644DF0013992D /* aux.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C874285189644DF0013992D /* aux.m */; };
 		1C87428918964DA00013992D /* QRulesTableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87428818964DA00013992D /* QRulesTableData.m */; };
 		1C87428C189653630013992D /* QRulesTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87428B189653630013992D /* QRulesTableDelegate.m */; };
+		1C8C781C1897431000734461 /* QSelectorTableSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8C781B1897431000734461 /* QSelectorTableSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,8 @@
 		1C87428818964DA00013992D /* QRulesTableData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRulesTableData.m; sourceTree = "<group>"; };
 		1C87428A189653630013992D /* QRulesTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRulesTableDelegate.h; sourceTree = "<group>"; };
 		1C87428B189653630013992D /* QRulesTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRulesTableDelegate.m; sourceTree = "<group>"; };
+		1C8C781A1897431000734461 /* QSelectorTableSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSelectorTableSource.h; sourceTree = "<group>"; };
+		1C8C781B1897431000734461 /* QSelectorTableSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSelectorTableSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +183,8 @@
 				1C1B083C18970664009F4DEF /* QFlexTokenField.m */,
 				1C1B083E18971ADB009F4DEF /* NSObject+QNull.h */,
 				1C1B083F18971ADB009F4DEF /* NSObject+QNull.m */,
+				1C8C781A1897431000734461 /* QSelectorTableSource.h */,
+				1C8C781B1897431000734461 /* QSelectorTableSource.m */,
 			);
 			path = Schemer;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				1C87427618961B870013992D /* QScheme.m in Sources */,
 				1C874273189619970013992D /* QSchemeRule.m in Sources */,
 				1C1B084018971ADB009F4DEF /* NSObject+QNull.m in Sources */,
+				1C8C781C1897431000734461 /* QSelectorTableSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

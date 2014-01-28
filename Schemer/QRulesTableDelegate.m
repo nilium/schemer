@@ -21,6 +21,8 @@ NSString *const QSelectedRules = @"rules";
 
 @interface QRulesTableDelegate ()
 
+@property (weak, readwrite) QSchemeRule *selectedRule;
+
 - (void)bindView:(NSView *)view toRule:(QSchemeRule *)rule forColumn:(int)column;
 
 @end
@@ -39,9 +41,6 @@ enum {
   QScheme *_scheme;
   __weak NSTableView *_tableView;
 }
-
-
-@dynamic selectedRule;
 
 
 + (void)initialize
@@ -248,20 +247,20 @@ enum {
 }
 
 
-- (QSchemeRule *)selectedRule
-{
-  if (!_tableView) {
-    return nil;
-  }
-
-  NSIndexSet *indices = _tableView.selectedRowIndexes;
-  NSArray *rules = [_scheme.rules objectsAtIndexes:indices];
-
-  if ([rules count] != 1) {
-    return nil;
-  }
-
-  return rules.lastObject;
-}
+//- (QSchemeRule *)selectedRule
+//{
+//  if (!_tableView) {
+//    return nil;
+//  }
+//
+//  NSIndexSet *indices = _tableView.selectedRowIndexes;
+//  NSArray *rules = [_scheme.rules objectsAtIndexes:indices];
+//
+//  if ([rules count] != 1) {
+//    return nil;
+//  }
+//
+//  return rules.lastObject;
+//}
 
 @end

@@ -13,6 +13,7 @@
 #import "QRulesTableDelegate.h"
 #import "NSFilters.h"
 #import "NSObject+QNull.h"
+#import "QSelectorTableSource.h"
 
 
 static
@@ -73,6 +74,15 @@ static NSArray *observedSchemeRulePaths()
 }
 
 
+#pragma mark Private API for QRulesTableDelegate
+
+@interface QRulesTableDelegate ()
+
+@property (strong, readwrite) QSchemeRule *selectedRule;
+
+@end
+
+
 #pragma mark Private interface
 
 @interface QDocument ()
@@ -83,6 +93,9 @@ static NSArray *observedSchemeRulePaths()
 @property (strong) QRulesTableDelegate *rulesTableDelegate;
 @property (weak) IBOutlet NSTokenField *ruleScopeField;
 @property (weak) IBOutlet NSButton *removeSelectedRulesButton;
+@property (weak) IBOutlet NSTableView *selectorTable;
+@property (strong) IBOutlet QSelectorTableSource *selectorData;
+
 @property (strong) id observerKey;
 
 @end
@@ -126,24 +139,29 @@ static NSArray *observedSchemeRulePaths()
     self.observerKey = nil;
   }
 
-  __weak NSTokenField *tokens = self.ruleScopeField;
+  __weak NSTableView *selectorTable = self.selectorTable;
   __weak NSButton *removeRulesButton = self.removeSelectedRulesButton;
+  __weak QSelectorTableSource *selectorData = self.selectorData;
   void (^block)(NSNotification *) = ^(NSNotification *note) {
     NSTableView *view = (NSTableView *)note.object;
+    NSIndexSet *indices = view ? view.selectedRowIndexes : nil;
     QRulesTableDelegate *delegate = view ? [note.object delegate] : nil;
-    QSchemeRule *rule = delegate ? delegate.selectedRule : nil;
+    removeRulesButton.enabled = indices && [indices count] > 0;
 
-    removeRulesButton.enabled = [view numberOfSelectedRows] > 0;
-
-    if (rule) {
-      tokens.stringValue = [rule.selectors componentsJoinedByString:@", "];
-      tokens.enabled = YES;
-    } else {
-      tokens.stringValue = @"";
-      tokens.enabled = NO;
+    if (delegate) {
+      if ([indices count] == 1) {
+        QSchemeRule *rule = self.scheme.rules[indices.lastIndex];
+        delegate.selectedRule = rule;
+        selectorData.rule = rule;
+      } else {
+        delegate.selectedRule = nil;
+        selectorData.rule = nil;
+      }
+      [selectorTable reloadData];
     }
   };
 
+  self.selectorTable.dataSource = self.selectorData;
   self.rulesTableDelegate = [[QRulesTableDelegate alloc] initWithScheme:self.scheme tableView:self.rulesTable];
   self.rulesTableData = [[QRulesTableData alloc] initWithScheme:self.scheme];
   self.rulesTable.target = self.rulesTableDelegate;
