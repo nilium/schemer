@@ -31,6 +31,7 @@
 		1C87428918964DA00013992D /* QRulesTableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87428818964DA00013992D /* QRulesTableData.m */; };
 		1C87428C189653630013992D /* QRulesTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87428B189653630013992D /* QRulesTableDelegate.m */; };
 		1C8C781C1897431000734461 /* QSelectorTableSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8C781B1897431000734461 /* QSelectorTableSource.m */; };
+		1C8C781F1897C28F00734461 /* QAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8C781E1897C28F00734461 /* QAppDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		1C87428B189653630013992D /* QRulesTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRulesTableDelegate.m; sourceTree = "<group>"; };
 		1C8C781A1897431000734461 /* QSelectorTableSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSelectorTableSource.h; sourceTree = "<group>"; };
 		1C8C781B1897431000734461 /* QSelectorTableSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSelectorTableSource.m; sourceTree = "<group>"; };
+		1C8C781D1897C28F00734461 /* QAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAppDelegate.h; sourceTree = "<group>"; };
+		1C8C781E1897C28F00734461 /* QAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +188,8 @@
 				1C1B083F18971ADB009F4DEF /* NSObject+QNull.m */,
 				1C8C781A1897431000734461 /* QSelectorTableSource.h */,
 				1C8C781B1897431000734461 /* QSelectorTableSource.m */,
+				1C8C781D1897C28F00734461 /* QAppDelegate.h */,
+				1C8C781E1897C28F00734461 /* QAppDelegate.m */,
 			);
 			path = Schemer;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 				1C87428C189653630013992D /* QRulesTableDelegate.m in Sources */,
 				1C023AF718960B190036F0CA /* QDocument.m in Sources */,
 				1C023AF018960B190036F0CA /* main.m in Sources */,
+				1C8C781F1897C28F00734461 /* QAppDelegate.m in Sources */,
 				1C87428018962F830013992D /* QColorWell.m in Sources */,
 				1C87427C189621390013992D /* NSColor+QHexColor.m in Sources */,
 				1C8742831896303E0013992D /* QColorWellOpaque.m in Sources */,
