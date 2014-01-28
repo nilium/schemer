@@ -96,6 +96,7 @@ static NSArray *observedSchemeRulePaths()
 @property (weak) IBOutlet NSButton *removeSelectedRulesButton;
 @property (weak) IBOutlet NSTableView *selectorTable;
 @property (strong) IBOutlet QSelectorTableSource *selectorData;
+@property (weak) IBOutlet NSButton *removeSelectorsButton;
 
 @property (strong) id rulesTableObserverKey;
 
