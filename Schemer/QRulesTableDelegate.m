@@ -202,7 +202,8 @@ convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSF
   NSTableColumn *nameCol = [_tableView tableColumnWithIdentifier:@"name"];
   NSInteger column = [_tableView.tableColumns indexOfObject:nameCol];
   if (column >= 0) {
-    [_tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row] columnIndexes:[NSIndexSet indexSetWithIndex:column]];
+    [_tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row]
+                          columnIndexes:[NSIndexSet indexSetWithIndex:column]];
   }
 }
 
