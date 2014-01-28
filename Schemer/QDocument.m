@@ -489,7 +489,6 @@ static NSArray *observedSchemeRulePaths()
   NSTableView *table = self.selectorTable;
   QSchemeRule *rule = self.selectorData.rule;
   if (rule && table) {
-//    self.scheme.rules = [self.scheme.rules arrayByAddingObject:[[QSchemeRule alloc] initWithDocument:self]];
     [table beginUpdates];
     rule.selectors = [rule.selectors arrayByAddingObject:@"scope"];
     NSIndexSet *indices = [NSIndexSet indexSetWithIndex:[rule.selectors count] - 1];
