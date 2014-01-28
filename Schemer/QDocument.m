@@ -168,6 +168,12 @@ static NSArray *observedSchemeRulePaths()
     self.selectorTableObserverKey = nil;
   }
 
+  __weak NSButton *removeSelectorsButton = self.removeSelectorsButton;
+  void (^selectorSelectedBlock)(NSNotification *) = ^(NSNotification *note) {
+    NSTableView *view = (NSTableView *)note.object;
+    removeSelectorsButton.enabled = view && [view numberOfSelectedRows] > 0;
+  };
+
   __weak NSTableView *selectorTable = self.selectorTable;
   __weak NSButton *removeRulesButton = self.removeSelectedRulesButton;
   __weak QSelectorTableSource *selectorData = self.selectorData;
@@ -198,10 +204,16 @@ static NSArray *observedSchemeRulePaths()
   self.rulesTable.doubleAction = @selector(doubleClickedTableView:);
   self.rulesTable.delegate = self.rulesTableDelegate;
   self.rulesTable.dataSource = self.rulesTableData;
+
   self.rulesTableObserverKey = [center addObserverForName:NSTableViewSelectionDidChangeNotification
                                          object:self.rulesTable
                                           queue:[NSOperationQueue mainQueue]
                                      usingBlock:ruleSelectedBlock];
+
+  self.selectorTableObserverKey = [center addObserverForName:NSTableViewSelectionDidChangeNotification
+                                                      object:self.selectorTable
+                                                       queue:[NSOperationQueue mainQueue]
+                                                  usingBlock:selectorSelectedBlock];
 }
 
 
