@@ -435,23 +435,6 @@ static NSArray *observedSchemeRulePaths()
 }
 
 
-#pragma mark Edit rule scope
-
-- (void)controlTextDidChange:(NSNotification *)obj
-{
-  id sender = obj.object;
-  if ([sender isKindOfClass:[NSTokenField class]]) {
-    [self updateRuleScope:sender];
-  }
-}
-
-
-- (IBAction)updateRuleScope:(NSTokenField *)sender
-{
-  [self.rulesTableDelegate updateSelectedRuleSelectors:cleanedRuleSelectorArray(sender.stringValue)];
-}
-
-
 #pragma mark Add / remove rules
 
 - (IBAction)appendNewRule:(id)sender {
