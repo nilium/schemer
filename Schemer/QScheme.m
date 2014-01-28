@@ -75,6 +75,7 @@ getRulesDictionaries(NSArray *settings)
     self.inactiveSelectionColor = [self.selectionColor colorWithAlphaComponent:0.5f];
     self.invisiblesColor = [NSColor colorWithWhite:0.75f alpha:1.0f];
     self.caretColor = [NSColor blackColor];
+    self.uuid = [NSUUID UUID];
 
     self.rules = @[];
   }
