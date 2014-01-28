@@ -52,15 +52,10 @@ getRulesDictionaries(NSArray *settings)
 
 @property (copy, readwrite) NSUUID *uuid;
 
-- (void)notifyDocumentChange;
-
 @end
 
 
-@implementation QScheme {
-  __weak NSDocument *_document;
-}
-
+@implementation QScheme
 
 - (id)init
 {
@@ -82,18 +77,9 @@ getRulesDictionaries(NSArray *settings)
 }
 
 
-- (id)initWithDocument:(NSDocument *)doc
+- (id)initWithPropertyList:(NSDictionary *)plist
 {
   if ((self = [self init])) {
-    _document = doc;
-  }
-  return self;
-}
-
-
-- (id)initWithPropertyList:(NSDictionary *)plist document:(NSDocument *)doc
-{
-  if ((self = [self initWithDocument:doc])) {
     NSDictionary *baseRules = getBaseRuleDictionary(plist[@"settings"]);
     NSArray *rules = getRulesDictionaries(plist[@"settings"]);
 
@@ -112,7 +98,7 @@ getRulesDictionaries(NSArray *settings)
     self.caretColor             = colorSetting(settings, @"caret", self.caretColor);
 
     self.rules = [rules mappedArrayUsingBlock:^id(id obj) {
-      return [[QSchemeRule alloc] initWithPropertyList:obj document:doc];
+      return [[QSchemeRule alloc] initWithPropertyList:obj];
     }];
 
     self.uuid =
@@ -126,7 +112,7 @@ getRulesDictionaries(NSArray *settings)
 
 - (id)copyWithZone:(NSZone *)zone
 {
-  QScheme *scheme = [[[self class] alloc] initWithDocument:_document];
+  QScheme *scheme = [[self class] new];
   if (scheme) {
     scheme.uuid = self.uuid;
 
@@ -174,17 +160,6 @@ getRulesDictionaries(NSArray *settings)
   plist[@"settings"] = baseRules;
 
   return plist;
-}
-
-
-- (void)notifyDocumentChange
-{
-  __weak NSDocument *doc = _document;
-  dispatch_async(dispatch_get_main_queue(), ^{
-    if (doc) {
-      [doc updateChangeCount:NSChangeDone];
-    }
-  });
 }
 
 @end

@@ -28,8 +28,8 @@
 
 @property (copy, readonly) NSUUID *uuid;
 
-- (id)initWithDocument:(NSDocument *)doc;
-- (id)initWithPropertyList:(NSDictionary *)plist document:(NSDocument *)doc;
+- (id)init;
+- (id)initWithPropertyList:(NSDictionary *)plist;
 
 - (NSDictionary *)toPropertyList;
 

@@ -23,8 +23,8 @@ typedef NS_ENUM(uint32_t, QSchemeRuleFlags) {
 @property (copy) NSColor *background;
 @property NSNumber *flags;
 
-- (id)initWithDocument:(NSDocument *)document;
-- (id)initWithPropertyList:(NSDictionary *)plist document:(NSDocument *)document;
+- (id)init;
+- (id)initWithPropertyList:(NSDictionary *)plist;
 
 - (NSDictionary *)toPropertyList;
 

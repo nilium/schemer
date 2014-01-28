@@ -114,7 +114,7 @@ static NSArray *observedSchemeRulePaths()
     if ((self = [super init])) {
       NSUInteger options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
       [self addObserver:self forKeyPath:@"scheme" options:options context:NULL];
-      self.scheme = [[QScheme alloc] initWithDocument:self];
+      self.scheme = [QScheme new];
 
       [[NSNotificationCenter defaultCenter]
        addObserver:self selector:@selector(userFontChanged:)
@@ -279,7 +279,7 @@ static NSArray *observedSchemeRulePaths()
     return NO;
   }
 
-  self.scheme = [[QScheme alloc] initWithPropertyList:plist document:self];
+  self.scheme = [[QScheme alloc] initWithPropertyList:plist];
 
   if (self.rulesTable) {
     [self bindTableView];
@@ -424,7 +424,7 @@ static NSArray *observedSchemeRulePaths()
 - (IBAction)appendNewRule:(id)sender {
   NSTableView *table = self.rulesTable;
   if (table) {
-    self.scheme.rules = [self.scheme.rules arrayByAddingObject:[[QSchemeRule alloc] initWithDocument:self]];
+    self.scheme.rules = [self.scheme.rules arrayByAddingObject:[QSchemeRule new]];
     NSIndexSet *indices = [NSIndexSet indexSetWithIndex:[self.scheme.rules count] - 1];
     [table insertRowsAtIndexes:indices withAnimation:0];
     [table selectRowIndexes:indices byExtendingSelection:NO];

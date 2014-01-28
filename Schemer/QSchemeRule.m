@@ -63,10 +63,7 @@ schemeFlagStringForFlags(uint32_t flags)
 }
 
 
-@implementation QSchemeRule {
-  __weak NSDocument *_document;
-}
-
+@implementation QSchemeRule
 
 - (id)init {
   if ((self = [super init])) {
@@ -80,18 +77,9 @@ schemeFlagStringForFlags(uint32_t flags)
 }
 
 
-- (id)initWithDocument:(NSDocument *)document
-{
-  if ((self = [self init])) {
-    _document = document;
-  }
-  return self;
-}
-
-
 - (id)copyWithZone:(NSZone *)zone
 {
-  QSchemeRule *rule = [[[self class] alloc] initWithDocument:_document];
+  QSchemeRule *rule = [[self class] new];
   if (rule) {
     rule.name = self.name;
     rule.foreground = self.foreground;
@@ -103,9 +91,9 @@ schemeFlagStringForFlags(uint32_t flags)
 }
 
 
-- (id)initWithPropertyList:(NSDictionary *)plist document:(NSDocument *)document
+- (id)initWithPropertyList:(NSDictionary *)plist
 {
-  if ((self = [self initWithDocument:document])) {
+  if ((self = [self init])) {
     self.name = plist[@"name"];
     NSString *scope = (NSString *)plist[@"scope"];
     NSCharacterSet *charset = [NSCharacterSet whitespaceAndNewlineCharacterSet];
