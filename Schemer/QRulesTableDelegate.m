@@ -119,18 +119,21 @@ convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSF
       text.stringValue = rule.name;
     }
   } break;
+
   case COL_FOREGROUND: {
     well = (NSColorWell *)view;
     [well setColor:rule.foreground];
     well.target = self;
     well.action = @selector(updateForegroundRuleColor:);
   } break;
+
   case COL_BACKGROUND: {
     well = (NSColorWell *)view;
     [well setColor:rule.background];
     well.target = self;
     well.action = @selector(updateBackgroundRuleColor:);
   } break;
+
   case COL_FLAGS: {
     NSSegmentedControl *seg = (NSSegmentedControl *)view;
     uint32_t flags = rule.flags.unsignedIntValue;
@@ -143,6 +146,7 @@ convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSF
     [seg.cell setSelected:(flags & QItalicFlag) forSegment:1];
     [seg.cell setSelected:(flags & QUnderlineFlag) forSegment:2];
   } break;
+
   default:
     @throw [NSException
             exceptionWithName:@"InvalidColumnID"
