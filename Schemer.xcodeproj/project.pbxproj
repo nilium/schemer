@@ -19,7 +19,6 @@
 		1C023B0718960B190036F0CA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C023AE318960B190036F0CA /* Cocoa.framework */; };
 		1C023B0F18960B190036F0CA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C023B0D18960B190036F0CA /* InfoPlist.strings */; };
 		1C023B1118960B190036F0CA /* SchemerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C023B1018960B190036F0CA /* SchemerTests.m */; };
-		1C1B083D18970664009F4DEF /* QFlexTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B083C18970664009F4DEF /* QFlexTokenField.m */; };
 		1C1B084018971ADB009F4DEF /* NSObject+QNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B083F18971ADB009F4DEF /* NSObject+QNull.m */; };
 		1C874273189619970013992D /* QSchemeRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C874272189619970013992D /* QSchemeRule.m */; };
 		1C87427618961B870013992D /* QScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87427518961B870013992D /* QScheme.m */; };
@@ -65,8 +64,6 @@
 		1C023B0C18960B190036F0CA /* SchemerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SchemerTests-Info.plist"; sourceTree = "<group>"; };
 		1C023B0E18960B190036F0CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1C023B1018960B190036F0CA /* SchemerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchemerTests.m; sourceTree = "<group>"; };
-		1C1B083B18970664009F4DEF /* QFlexTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFlexTokenField.h; sourceTree = "<group>"; };
-		1C1B083C18970664009F4DEF /* QFlexTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFlexTokenField.m; sourceTree = "<group>"; };
 		1C1B083E18971ADB009F4DEF /* NSObject+QNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+QNull.h"; sourceTree = "<group>"; };
 		1C1B083F18971ADB009F4DEF /* NSObject+QNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+QNull.m"; sourceTree = "<group>"; };
 		1C874271189619970013992D /* QSchemeRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSchemeRule.h; sourceTree = "<group>"; };
@@ -182,8 +179,6 @@
 				1C87428818964DA00013992D /* QRulesTableData.m */,
 				1C87428A189653630013992D /* QRulesTableDelegate.h */,
 				1C87428B189653630013992D /* QRulesTableDelegate.m */,
-				1C1B083B18970664009F4DEF /* QFlexTokenField.h */,
-				1C1B083C18970664009F4DEF /* QFlexTokenField.m */,
 				1C1B083E18971ADB009F4DEF /* NSObject+QNull.h */,
 				1C1B083F18971ADB009F4DEF /* NSObject+QNull.m */,
 				1C8C781A1897431000734461 /* QSelectorTableSource.h */,
@@ -341,7 +336,6 @@
 				1C87427918961E9B0013992D /* NSFilters.m in Sources */,
 				1C87428918964DA00013992D /* QRulesTableData.m in Sources */,
 				1C874286189644DF0013992D /* aux.m in Sources */,
-				1C1B083D18970664009F4DEF /* QFlexTokenField.m in Sources */,
 				1C87427618961B870013992D /* QScheme.m in Sources */,
 				1C874273189619970013992D /* QSchemeRule.m in Sources */,
 				1C1B084018971ADB009F4DEF /* NSObject+QNull.m in Sources */,
