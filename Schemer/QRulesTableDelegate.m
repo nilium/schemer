@@ -137,14 +137,11 @@ convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSF
   case COL_FLAGS: {
     NSSegmentedControl *seg = (NSSegmentedControl *)view;
     uint32_t flags = rule.flags.unsignedIntValue;
-    NSLog(@"%u %u %u",
-          flags & QBoldFlag,
-          flags & QItalicFlag,
-          flags & QUnderlineFlag);
-
-    [seg.cell setSelected:(flags & QBoldFlag) forSegment:2];
-    [seg.cell setSelected:(flags & QItalicFlag) forSegment:1];
-    [seg.cell setSelected:(flags & QUnderlineFlag) forSegment:2];
+    [seg setSelected:(flags & QBoldFlag) forSegment:0];
+    [seg setSelected:(flags & QItalicFlag) forSegment:1];
+    [seg setSelected:(flags & QUnderlineFlag) forSegment:2];
+    [seg setTarget:self];
+    [seg setAction:@selector(updateRuleFlags:)];
   } break;
 
   default:
@@ -154,6 +151,11 @@ convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSF
             userInfo:nil];
     break;
   }
+}
+
+
+- (void)updateRuleFlags:(NSSegmentedControl *)sender
+{
 }
 
 
