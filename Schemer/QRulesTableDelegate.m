@@ -156,6 +156,18 @@ convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSF
 
 - (void)updateRuleFlags:(NSSegmentedControl *)sender
 {
+  uint32_t bold = [sender isSelectedForSegment:0];
+  uint32_t italic = [sender isSelectedForSegment:1];
+  uint32_t underline = [sender isSelectedForSegment:2];
+
+  const uint32_t flags = bold | (italic << 1) | (underline << 2);
+
+  NSInteger row = [_tableView rowForView:sender];
+  if (row >= 0 && row < [_scheme.rules count]) {
+    QSchemeRule *rule = _scheme.rules[row];
+    rule.flags = @(flags);
+    [self updateRuleLabelAtRow:row];
+  }
 }
 
 
