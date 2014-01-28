@@ -19,22 +19,6 @@
 
 static
 NSArray *
-cleanedRuleSelectorArray(NSString *selectors)
-{
-  static NSCharacterSet *trimset = nil;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    trimset = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-  });
-
-  return
-    [[selectors componentsSeparatedByString:@","]
-     mappedArrayUsingBlock:^(id obj) { return [obj stringByTrimmingCharactersInSet:trimset]; }];
-}
-
-
-static
-NSArray *
 observedSchemePaths()
 {
   static NSArray *paths = nil;
