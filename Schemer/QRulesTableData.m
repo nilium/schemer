@@ -18,6 +18,7 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
   QScheme *_scheme;
 }
 
+
 - (id)initWithScheme:(QScheme *)scheme
 {
   if ((self = [self init])) {
@@ -26,10 +27,12 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
   return self;
 }
 
+
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
   return [_scheme.rules count];
 }
+
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
