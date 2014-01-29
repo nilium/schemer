@@ -184,7 +184,6 @@ convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSF
 
   QSchemeRule *rule = _scheme.rules[row];
   rule.background = well.color;
-  [rule didChangeValueForKey:@"background"];
 
   [self updateRuleLabelAtRow:row];
 }
@@ -203,7 +202,6 @@ convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSF
 
   QSchemeRule *rule = _scheme.rules[row];
   rule.foreground = well.color;
-  [rule didChangeValueForKey:@"foreground"];
 
   [self updateRuleLabelAtRow:row];
 }
