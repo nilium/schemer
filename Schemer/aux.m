@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 Spifftastic. All rights reserved.
 //
 
-#import "aux.h"
 #import <Cocoa/Cocoa.h>
+
+#import "aux.h"
 #import "NSColor+QHexColor.h"
 
 

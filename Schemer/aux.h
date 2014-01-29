@@ -9,6 +9,7 @@
 #ifndef Schemer_aux_h
 #define Schemer_aux_h
 
+
 @class NSColor;
 @class NSDictionary;
 @class NSMutableDictionary;
