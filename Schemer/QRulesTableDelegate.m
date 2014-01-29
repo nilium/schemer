@@ -71,6 +71,10 @@ enum {
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
+  NSInteger rowCount = [_scheme.rules count];
+  if (row >= rowCount) {
+    return nil;
+  }
   NSView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
   [self bindView:view toRule:_scheme.rules[row] forColumn:[g_columnIDs[tableColumn.identifier] intValue]];
   return view;

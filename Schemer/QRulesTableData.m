@@ -67,7 +67,7 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
     for (NSDictionary *item in items) {
       NSInteger itemRow = [item[@"row"] integerValue];
       [indices addIndex:itemRow];
-      if (itemRow <= row) {
+      if (itemRow < row) {
         row -= 1;
       }
     }
@@ -80,7 +80,7 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
   }];
 
   NSInteger count = (NSInteger)[rules count];
-  if (row == count) {
+  if (row >= count) {
     [rules addObjectsFromArray:newRules];
   } else {
     NSIndexSet *newRuleIndices =
