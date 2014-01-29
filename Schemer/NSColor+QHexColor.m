@@ -35,7 +35,8 @@ q_ftoub(CGFloat f)
   NSScanner *scanner = [NSScanner scannerWithString:hex];
 
   unsigned int color = 0;
-  if (!([scanner scanString:@"#" intoString:NULL] && [scanner scanHexInt:&color])) {
+  if (!(   [scanner scanString:@"#" intoString:NULL]
+        && [scanner scanHexInt:&color])) {
     NSLog(@"Invalid color read from string %@, returning opaque white", hex);
     return [NSColor colorWithWhite:1.0 alpha:1.0];
   }
