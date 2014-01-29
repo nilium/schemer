@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+
 @interface NSColor (QHexColor)
 
 + (NSColor *)colorFromHexString:(NSString *)hex;

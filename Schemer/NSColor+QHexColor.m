@@ -53,6 +53,7 @@ q_ftoub(CGFloat f)
   return [NSColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
+
 - (NSString *)toHexColorString
 {
   NSColor *valid = [self forScheme];
