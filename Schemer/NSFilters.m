@@ -530,7 +530,8 @@ SPMapArrayConcurrent(
     ++iterations;
   }
 
-  __block int32_t cleanup = NO;
+  volatile int32_t cleanup = NO;
+  volatile int32_t *cleanup_addr = &cleanup;
 
   dispatch_apply(iterations, queue, ^(size_t start) {
     NSUInteger index = start * stride;
@@ -552,7 +553,7 @@ invalid_array_mapping_concurrent:
       if (mapped == nil) {
         // prevents the original object from being incorrectly released on
         // cleanup
-        OSAtomicIncrement32Barrier(&cleanup);
+        OSAtomicIncrement32Barrier(cleanup_addr);
 
         goto invalid_array_mapping_concurrent;
       } else {
