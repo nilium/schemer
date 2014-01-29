@@ -50,12 +50,12 @@ schemeFlagStringForFlags(uint32_t flags)
   }
 
 
-  if (flags & QBoldFlag) {
+  if (flags & QItalicFlag) {
     [flagNames addObject:@"italic"];
   }
 
 
-  if (flags & QBoldFlag) {
+  if (flags & QUnderlineFlag) {
     [flagNames addObject:@"underline"];
   }
 
