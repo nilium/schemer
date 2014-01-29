@@ -28,7 +28,7 @@ NSString *const QFontChangeNotification = @"QUserFontChangedNotification";
 
 - (void)changeFont:(id)sender
 {
-  _font = [sender convertFont:[sender convertFont:_font] toSize:11.0];
+  _font = [sender convertFont:_font];
   [NSFont setUserFixedPitchFont:_font];
   [[NSNotificationCenter defaultCenter] postNotificationName:QFontChangeNotification object:self];
 }
