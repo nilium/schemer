@@ -55,7 +55,10 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
     return NO;
   }
 
+  NSUInteger mask = [info draggingSourceOperationMask];
+  id source = [info draggingSource];
   NSPasteboard *paste = [info draggingPasteboard];
+
   NSArray *items = [[paste readObjectsForClasses:@[[NSPasteboardItem class]] options:nil]
                     mappedArrayUsingBlock:^id(id obj) {
                       return [obj propertyListForType:QRulePasteType];
@@ -63,7 +66,7 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
 
   NSMutableIndexSet *indices = [NSMutableIndexSet new];
 
-  if ([info draggingSource] == tableView) {
+  if (source == tableView && mask & NSDragOperationMove) {
     for (NSDictionary *item in items) {
       NSInteger itemRow = [item[@"row"] integerValue];
       [indices addIndex:itemRow];
@@ -106,14 +109,19 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
   }
 
   if (row >= 0 && row <= [_scheme.rules count]) {
-    if ([info draggingSource] == tableView) {
-      return NSDragOperationMove;
-    } else {
+    id source = [info draggingSource];
+    NSUInteger mask = [info draggingSourceOperationMask];
+
+    if (mask == NSDragOperationCopy || (source != tableView && (mask & NSDragOperationCopy))) {
       return NSDragOperationCopy;
     }
-  } else {
-    return NSDragOperationNone;
+
+    if (mask & NSDragOperationMove && source == tableView) {
+      return NSDragOperationMove;
+    }
   }
+
+  return NSDragOperationNone;
 }
 
 
