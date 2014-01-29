@@ -9,6 +9,7 @@
 #import "QRulesTableData.h"
 #import "QScheme.h"
 #import "QSchemeRule.h"
+#import "NSFilters.h"
 
 
 NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
@@ -41,5 +42,88 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
   // value of the controls to something and that's not pretty.
   return nil;
 }
+
+
+#pragma mark Drag / drop support
+
+- (BOOL)tableView:(NSTableView *)tableView
+       acceptDrop:(id<NSDraggingInfo>)info
+              row:(NSInteger)row
+    dropOperation:(NSTableViewDropOperation)dropOperation
+{
+  if (dropOperation == NSTableViewDropOn) {
+    return NO;
+  }
+
+  NSPasteboard *paste = [info draggingPasteboard];
+  NSArray *items = [[paste readObjectsForClasses:@[[NSPasteboardItem class]] options:nil]
+                    mappedArrayUsingBlock:^id(id obj) {
+                      return [obj propertyListForType:QRulePasteType];
+                    }];
+
+  NSMutableIndexSet *indices = [NSMutableIndexSet new];
+
+  if ([info draggingSource] == tableView) {
+    for (NSDictionary *item in items) {
+      NSInteger itemRow = [item[@"row"] integerValue];
+      [indices addIndex:itemRow];
+      if (itemRow <= row) {
+        row -= 1;
+      }
+    }
+  }
+
+  NSMutableArray *rules = [_scheme.rules mutableCopy];
+  [rules removeObjectsAtIndexes:indices];
+  NSArray *newRules = [items mappedArrayUsingBlock:^id(NSDictionary *item) {
+    return [[QSchemeRule alloc] initWithPropertyList:item[@"rule"]];
+  }];
+
+  NSInteger count = (NSInteger)[rules count];
+  if (row == count) {
+    [rules addObjectsFromArray:newRules];
+  } else {
+    NSIndexSet *newRuleIndices =
+      [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(row, [newRules count])];
+
+    [rules insertObjects:newRules atIndexes:newRuleIndices];
+  }
+
+  _scheme.rules = rules;
+  
+
+  return YES;
+}
+
+
+- (NSDragOperation)tableView:(NSTableView *)tableView
+                validateDrop:(id<NSDraggingInfo>)info
+                 proposedRow:(NSInteger)row
+       proposedDropOperation:(NSTableViewDropOperation)dropOperation
+{
+  if (dropOperation != NSTableViewDropAbove) {
+    [tableView setDropRow:row dropOperation:NSTableViewDropAbove];
+  }
+
+  if (row >= 0 && row <= [_scheme.rules count]) {
+    if ([info draggingSource] == tableView) {
+      return NSDragOperationMove;
+    } else {
+      return NSDragOperationCopy;
+    }
+  } else {
+    return NSDragOperationNone;
+  }
+}
+
+
+- (id<NSPasteboardWriting>)tableView:(NSTableView *)tableView pasteboardWriterForRow:(NSInteger)row
+{
+  NSPasteboardItem *item = [NSPasteboardItem new];
+  [item setPropertyList:@{ @"row": @(row), @"rule": [_scheme.rules[row] toPropertyList] }
+                forType:QRulePasteType];
+  return item;
+}
+
 
 @end
