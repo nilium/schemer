@@ -17,6 +17,11 @@
 #import "QAppDelegate.h"
 
 
+static NSKeyValueObservingOptions const QCaptureObservedChanges =
+  NSKeyValueObservingOptionNew |
+  NSKeyValueObservingOptionOld;
+
+
 static
 NSArray *
 observedSchemePaths()
@@ -112,8 +117,7 @@ static NSArray *observedSchemeRulePaths()
 - (id)init
 {
     if ((self = [super init])) {
-      NSUInteger options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
-      [self addObserver:self forKeyPath:@"scheme" options:options context:NULL];
+      [self addObserver:self forKeyPath:@"scheme" options:QCaptureObservedChanges context:NULL];
       self.scheme = [QScheme new];
 
       [[NSNotificationCenter defaultCenter]
