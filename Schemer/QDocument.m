@@ -396,6 +396,12 @@ static NSArray *observedSchemeRulePaths()
 
 - (void)rebindObservationFromOldObject:(id)oldObject toNewObject:(id)newObject forPaths:(NSArray *)paths
 {
+  [self rebindObservationFromOldObject:oldObject toNewObject:newObject forPaths:paths options:0];
+}
+
+
+- (void)rebindObservationFromOldObject:(id)oldObject toNewObject:(id)newObject forPaths:(NSArray *)paths options:(NSKeyValueObservingOptions)options
+{
   if (oldObject) {
     for (NSString *path in paths) {
       [oldObject removeObserver:self forKeyPath:path];
@@ -404,7 +410,7 @@ static NSArray *observedSchemeRulePaths()
 
   if (newObject) {
     for (NSString *path in paths) {
-      [newObject addObserver:self forKeyPath:path options:0 context:NULL];
+      [newObject addObserver:self forKeyPath:path options:options context:NULL];
     }
   }
 }
