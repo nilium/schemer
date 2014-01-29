@@ -17,6 +17,11 @@
 #import "QAppDelegate.h"
 
 
+static NSDragOperation const QDragOpsMask =
+  NSDragOperationMove |
+  NSDragOperationCopy;
+
+
 static NSKeyValueObservingOptions const QCaptureObservedChanges =
   NSKeyValueObservingOptionNew |
   NSKeyValueObservingOptionOld;
@@ -29,8 +34,7 @@ observedSchemePaths()
   static NSArray *paths = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    paths =
-    @[
+    paths = @[
       @"foregroundColor",
       @"backgroundColor",
       @"lineHighlightColor",
@@ -119,7 +123,11 @@ static NSArray *observedSchemeRulePaths()
 - (id)init
 {
     if ((self = [super init])) {
-      [self addObserver:self forKeyPath:@"scheme" options:QCaptureObservedChanges context:NULL];
+      [self addObserver:self
+             forKeyPath:@"scheme"
+                options:QCaptureObservedChanges
+                context:NULL];
+
       self.scheme = [QScheme new];
 
       [[NSNotificationCenter defaultCenter]
@@ -187,23 +195,30 @@ static NSArray *observedSchemeRulePaths()
   };
 
   self.selectorTable.dataSource = self.selectorData;
-  self.rulesTableDelegate = [[QRulesTableDelegate alloc] initWithScheme:self.scheme tableView:self.rulesTable];
+
+  self.rulesTableDelegate = [[QRulesTableDelegate alloc]
+                             initWithScheme:self.scheme
+                                  tableView:self.rulesTable];
+
   self.rulesTableData = [[QRulesTableData alloc] initWithScheme:self.scheme];
-  self.rulesTable.target = self.rulesTableDelegate;
-  self.rulesTable.action = @selector(clickedTableView:);
-  self.rulesTable.doubleAction = @selector(doubleClickedTableView:);
-  self.rulesTable.delegate = self.rulesTableDelegate;
-  self.rulesTable.dataSource = self.rulesTableData;
 
-  self.rulesTableObserverKey = [center addObserverForName:NSTableViewSelectionDidChangeNotification
-                                         object:self.rulesTable
-                                          queue:[NSOperationQueue mainQueue]
-                                     usingBlock:ruleSelectedBlock];
+  self.rulesTable.target        = self.rulesTableDelegate;
+  self.rulesTable.action        = @selector(clickedTableView:);
+  self.rulesTable.doubleAction  = @selector(doubleClickedTableView:);
+  self.rulesTable.delegate      = self.rulesTableDelegate;
+  self.rulesTable.dataSource    = self.rulesTableData;
 
-  self.selectorTableObserverKey = [center addObserverForName:NSTableViewSelectionDidChangeNotification
-                                                      object:self.selectorTable
-                                                       queue:[NSOperationQueue mainQueue]
-                                                  usingBlock:selectorSelectedBlock];
+  self.rulesTableObserverKey =
+    [center addObserverForName:NSTableViewSelectionDidChangeNotification
+                        object:self.rulesTable
+                         queue:[NSOperationQueue mainQueue]
+                    usingBlock:ruleSelectedBlock];
+
+  self.selectorTableObserverKey =
+    [center addObserverForName:NSTableViewSelectionDidChangeNotification
+                        object:self.selectorTable
+                         queue:[NSOperationQueue mainQueue]
+                    usingBlock:selectorSelectedBlock];
 }
 
 
@@ -227,7 +242,7 @@ static NSArray *observedSchemeRulePaths()
 
   self.ruleScopeField.delegate = self;
   [self.rulesTable registerForDraggedTypes:@[QRulePasteType]];
-  [self.rulesTable setDraggingSourceOperationMask:NSDragOperationMove|NSDragOperationCopy
+  [self.rulesTable setDraggingSourceOperationMask:QDragOpsMask
                                          forLocal:YES];
 
   [self bindTableView];
@@ -241,7 +256,10 @@ static NSArray *observedSchemeRulePaths()
 }
 
 
-- (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
+- (BOOL)
+  writeToURL:(NSURL *)url
+      ofType:(NSString *)typeName
+       error:(NSError *__autoreleasing *)outError
 {
   NSDictionary *plist = [self.scheme toPropertyList];
 
@@ -251,7 +269,9 @@ static NSArray *observedSchemeRulePaths()
       @"type": typeName
     };
     if (outError) {
-      *outError = [NSError errorWithDomain:@"QInvalidPList" code:2 userInfo:info];
+      *outError = [NSError errorWithDomain:@"QInvalidPList"
+                                      code:2
+                                  userInfo:info];
     }
     return NO;
   }
@@ -266,7 +286,9 @@ static NSArray *observedSchemeRulePaths()
       @"type": typeName
     };
     if (outError) {
-      *outError = [NSError errorWithDomain:@"QCannotWritePList" code:3 userInfo:info];
+      *outError = [NSError errorWithDomain:@"QCannotWritePList"
+                                      code:3
+                                  userInfo:info];
     }
     return NO;
   }
@@ -275,7 +297,10 @@ static NSArray *observedSchemeRulePaths()
 }
 
 
-- (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
+- (BOOL)
+  readFromURL:(NSURL *)url
+       ofType:(NSString *)typeName
+        error:(NSError *__autoreleasing *)outError
 {
   NSDictionary *plist = [NSDictionary dictionaryWithContentsOfURL:url];
 
@@ -285,7 +310,9 @@ static NSArray *observedSchemeRulePaths()
       @"type": typeName
     };
     if (outError) {
-      *outError = [NSError errorWithDomain:@"QInvalidPList" code:1 userInfo:info];
+      *outError = [NSError errorWithDomain:@"QInvalidPList"
+                                      code:1
+                                  userInfo:info];
     }
     return NO;
   }
@@ -300,7 +327,10 @@ static NSArray *observedSchemeRulePaths()
 }
 
 
-- (BOOL)revertToContentsOfURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
+- (BOOL)
+  revertToContentsOfURL:(NSURL *)url
+                 ofType:(NSString *)typeName
+                  error:(NSError *__autoreleasing *)outError
 {
   if ([self readFromURL:url ofType:typeName error:outError]) {
     [self updateChangeCount:NSChangeCleared];
@@ -313,24 +343,32 @@ static NSArray *observedSchemeRulePaths()
 
 #pragma mark Key-value observing
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)
+  observeValueForKeyPath:(NSString *)keyPath
+                ofObject:(id)object
+                  change:(NSDictionary *)change
+                 context:(void *)context
 {
   if ([keyPath isEqualToString:@"scheme"]) {
     NSNumber *kind = change[NSKeyValueChangeKindKey];
     switch (kind.unsignedIntegerValue) {
     case NSKeyValueChangeReplacement:
-    case NSKeyValueChangeSetting:
-      [self rebindObservationFromOldScheme:[change[NSKeyValueChangeOldKey] selfIfNotNull]
-                               toNewScheme:[change[NSKeyValueChangeNewKey] selfIfNotNull]];
-      break;
+    case NSKeyValueChangeSetting: {
+      QScheme *oldScheme = [change[NSKeyValueChangeOldKey] selfIfNotNull];
+      QScheme *newScheme = [change[NSKeyValueChangeNewKey] selfIfNotNull];
+      [self rebindObservationFromOldScheme:oldScheme
+                               toNewScheme:newScheme];
+    } break;
     default: break;
     }
   } else if (object == self.scheme) {
     [self updateChangeCount:NSChangeDone];
 
     if ([keyPath isEqualToString:@"rules"]) {
-      [self rebindObservationFromOldRules:[change[NSKeyValueChangeOldKey] selfIfNotNull]
-                               toNewRules:[change[NSKeyValueChangeNewKey] selfIfNotNull]];
+      NSArray *oldRules = [change[NSKeyValueChangeOldKey] selfIfNotNull];
+      NSArray *newRules = [change[NSKeyValueChangeNewKey] selfIfNotNull];
+      [self rebindObservationFromOldRules:oldRules
+                               toNewRules:newRules];
 
       if (self.rulesTable && _midUpdate == 0) {
         [self.rulesTable reloadData];
@@ -343,7 +381,9 @@ static NSArray *observedSchemeRulePaths()
 }
 
 
-- (void)rebindObservationFromOldScheme:(QScheme *)oldScheme toNewScheme:(QScheme *)newScheme
+- (void)
+  rebindObservationFromOldScheme:(QScheme *)oldScheme
+                     toNewScheme:(QScheme *)newScheme
 {
   [self rebindObservationFromOldObject:oldScheme
                            toNewObject:newScheme
@@ -361,42 +401,52 @@ static NSArray *observedSchemeRulePaths()
 }
 
 
-- (void)rebindObservationFromOldRules:(NSArray *)oldRulesArray toNewRules:(NSArray *)newRulesArray
+- (void)
+  rebindObservationFromOldRules:(NSArray *)oldRulesArray
+                     toNewRules:(NSArray *)newRulesArray
 {
-  // TODO: Replace rebind with use of addObserver:toObjectsAtIndexes:forKeyPath:...
+  // TODO: Replace rebind with use of addObserver:toObjectsAtIndexes:for...
   NSArray *paths = observedSchemeRulePaths();
 
   NSSet *oldRules = nil;
   NSSet *newRules = nil;
+  NSUInteger oldRulesCount = 0;
+  NSUInteger newRulesCount = 0;
 
-  if (oldRulesArray && [oldRulesArray count]) {
+  if (oldRulesArray && (oldRulesCount = [oldRulesArray count])) {
     oldRules = [NSSet setWithArray:oldRulesArray];
   } else {
     oldRules = [NSSet set];
   }
 
-  if (newRulesArray && [newRulesArray count]) {
+  if (newRulesArray && (newRulesCount = [newRulesArray count])) {
     newRules = [NSSet setWithArray:newRulesArray];
   } else {
     newRules = [NSSet set];
   }
 
-  if ([oldRules count]) {
-    NSSet *filtered =
-      [newRules count]
-      ? [oldRules rejectedSetUsingBlock:^(id obj) { return [newRules containsObject:obj]; }]
-      : oldRules;
+  if (oldRulesCount) {
+    NSSet *filtered = oldRules;
+
+    if (newRulesCount) {
+      filtered = [oldRules rejectedSetUsingBlock:^(id obj) {
+        return [newRules containsObject:obj];
+      }];
+    }
 
     for (QSchemeRule *rule in filtered) {
       [self rebindObservationFromOldObject:rule toNewObject:nil forPaths:paths];
     }
   }
 
-  if ([newRules count]) {
-    NSSet *filtered =
-      [oldRules count]
-      ? [newRules rejectedSetUsingBlock:^(id obj) { return [oldRules containsObject:obj]; }]
-      : newRules;
+  if (newRulesCount) {
+    NSSet *filtered = newRules;
+
+    if (oldRulesCount) {
+      filtered = [newRules rejectedSetUsingBlock:^(id obj) {
+        return [oldRules containsObject:obj];
+      }];
+    }
 
     for (QSchemeRule *rule in filtered) {
       [self rebindObservationFromOldObject:nil toNewObject:rule forPaths:paths];
@@ -405,13 +455,23 @@ static NSArray *observedSchemeRulePaths()
 }
 
 
-- (void)rebindObservationFromOldObject:(id)oldObject toNewObject:(id)newObject forPaths:(NSArray *)paths
+- (void)
+  rebindObservationFromOldObject:(id)oldObject
+                     toNewObject:(id)newObject
+                        forPaths:(NSArray *)paths
 {
-  [self rebindObservationFromOldObject:oldObject toNewObject:newObject forPaths:paths options:0];
+  [self rebindObservationFromOldObject:oldObject
+                           toNewObject:newObject
+                              forPaths:paths
+                               options:0];
 }
 
 
-- (void)rebindObservationFromOldObject:(id)oldObject toNewObject:(id)newObject forPaths:(NSArray *)paths options:(NSKeyValueObservingOptions)options
+- (void)
+  rebindObservationFromOldObject:(id)oldObject
+                     toNewObject:(id)newObject
+                        forPaths:(NSArray *)paths
+                         options:(NSKeyValueObservingOptions)options
 {
   if (oldObject) {
     for (NSString *path in paths) {
@@ -448,11 +508,15 @@ static NSArray *observedSchemeRulePaths()
   NSTableView *table = self.rulesTable;
   if (table) {
     ++_midUpdate;
-    NSIndexSet *indices = [NSIndexSet indexSetWithIndex:[self.scheme.rules count]];
-    self.scheme.rules = [self.scheme.rules arrayByAddingObject:[QSchemeRule new]];
+    NSUInteger index    = [self.scheme.rules count];
+    NSIndexSet *indices = [NSIndexSet indexSetWithIndex:index];
+
+    self.scheme.rules =
+      [self.scheme.rules arrayByAddingObject:[QSchemeRule new]];
+
     [table insertRowsAtIndexes:indices withAnimation:0];
     [table selectRowIndexes:indices byExtendingSelection:NO];
-    [table scrollRowToVisible:indices.lastIndex];
+    [table scrollRowToVisible:index];
     --_midUpdate;
   }
 }
@@ -468,7 +532,8 @@ static NSArray *observedSchemeRulePaths()
       NSMutableArray *rules = [self.scheme.rules mutableCopy];
       [rules removeObjectsAtIndexes:indices];
       self.scheme.rules = rules;
-      [table removeRowsAtIndexes:indices withAnimation:NSTableViewAnimationSlideLeft];
+      [table removeRowsAtIndexes:indices
+                   withAnimation:NSTableViewAnimationSlideLeft];
       --_midUpdate;
     }
   }
@@ -480,19 +545,22 @@ static NSArray *observedSchemeRulePaths()
   QSchemeRule *rule = self.selectorData.rule;
   if (rule && table) {
     [table beginUpdates];
-    rule.selectors = [rule.selectors arrayByAddingObject:@"scope"];
-    NSIndexSet *indices = [NSIndexSet indexSetWithIndex:[rule.selectors count] - 1];
+    NSUInteger index    = [rule.selectors count];
+    NSIndexSet *indices = [NSIndexSet indexSetWithIndex:index];
+    rule.selectors      = [rule.selectors arrayByAddingObject:@"scope"];
+
     [table insertRowsAtIndexes:indices withAnimation:0];
     [table endUpdates];
     [table selectRowIndexes:indices byExtendingSelection:NO];
-    [table scrollRowToVisible:indices.lastIndex];
-    [table editColumn:0 row:indices.lastIndex withEvent:nil select:YES];
+    [table scrollRowToVisible:index];
+    [table editColumn:0 row:index withEvent:nil select:YES];
   }
 }
 
 
 - (IBAction)removeSelectedSelectors:(id)sender {
-  // TODO: Refactor both append/remove methods into calls to something generic for this purpose
+  // TODO: Refactor both append/remove methods into calls to something generic
+  // for this purpose
   NSTableView *table = self.selectorTable;
   QSchemeRule *rule = self.selectorData.rule;
   if (rule && table) {
@@ -503,7 +571,8 @@ static NSArray *observedSchemeRulePaths()
       [selectors removeObjectsAtIndexes:indices];
       [table beginUpdates];
       rule.selectors = selectors;
-      [table removeRowsAtIndexes:indices withAnimation:NSTableViewAnimationSlideLeft];
+      [table removeRowsAtIndexes:indices
+                   withAnimation:NSTableViewAnimationSlideLeft];
       [table endUpdates];
     }
   }
