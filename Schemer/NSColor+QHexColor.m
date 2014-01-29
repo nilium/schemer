@@ -41,16 +41,16 @@ q_ftoub(CGFloat f)
     return [NSColor colorWithWhite:1.0 alpha:1.0];
   }
 
-  float alpha = 1.0f;
+  CGFloat alpha = 1.0f;
 
   if ([hex length] > 7) {
-    alpha = ((float)(color & 0xFF)) / 255.0f;
+    alpha = ((CGFloat)(color & 0xFF)) / 255.0;
     color = color >> 8;
   }
 
-  CGFloat red = ((float)((color >> 16) & 0xFF)) / 255.0;
-  CGFloat green = ((float)((color >> 8) & 0xFF)) / 255.0;
-  CGFloat blue = ((float)(color & 0xFF)) / 255.0;
+  CGFloat red = ((CGFloat)((color >> 16) & 0xFF)) / 255.0;
+  CGFloat green = ((CGFloat)((color >> 8) & 0xFF)) / 255.0;
+  CGFloat blue = ((CGFloat)(color & 0xFF)) / 255.0;
 
   return [NSColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
