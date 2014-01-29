@@ -25,11 +25,15 @@ SOFTWARE.
 
 #import <Foundation/Foundation.h>
 
+
 typedef id (^SPMapBlock)(id obj);
 typedef BOOL (^SPFilterBlock)(id obj);
 typedef id (^SPReduceBlock)(id memo, id obj);
 
+
+// Default stride used by concurrent methods below.
 extern const NSUInteger NSFiltersDefaultStride;
+
 
 /*
 All map/select/reject operations can be performed asynchronously (provided your
@@ -50,19 +54,43 @@ if you exclude the stride, they will use the NSFiltersDefaultStride of 256.
 
 // map
 - (NSArray *)mappedArrayUsingBlock:(SPMapBlock)block;
-- (NSArray *)mappedArrayUsingBlock:(SPMapBlock)block queue:(dispatch_queue_t)queue;
-- (NSArray *)mappedArrayUsingBlock:(SPMapBlock)block queue:(dispatch_queue_t)queue stride:(NSUInteger)stride;
+
+- (NSArray *)
+  mappedArrayUsingBlock:(SPMapBlock)block
+                  queue:(dispatch_queue_t)queue;
+
+- (NSArray *)
+  mappedArrayUsingBlock:(SPMapBlock)block
+                  queue:(dispatch_queue_t)queue
+                 stride:(NSUInteger)stride;
+
 // reject
 - (NSArray *)rejectedArrayUsingBlock:(SPFilterBlock)block;
-- (NSArray *)rejectedArrayUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
-- (NSArray *)rejectedArrayUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue stride:(NSUInteger)stride;
+
+- (NSArray *)
+  rejectedArrayUsingBlock:(SPFilterBlock)block
+                    queue:(dispatch_queue_t)queue;
+
+- (NSArray *)
+  rejectedArrayUsingBlock:(SPFilterBlock)block
+                    queue:(dispatch_queue_t)queue
+                   stride:(NSUInteger)stride;
+
 // select
 - (NSArray *)selectedArrayUsingBlock:(SPFilterBlock)block;
-- (NSArray *)selectedArrayUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
-- (NSArray *)selectedArrayUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue stride:(NSUInteger)stride;
+
+- (NSArray *)
+  selectedArrayUsingBlock:(SPFilterBlock)block
+                    queue:(dispatch_queue_t)queue;
+
+- (NSArray *)
+  selectedArrayUsingBlock:(SPFilterBlock)block
+                    queue:(dispatch_queue_t)queue
+                   stride:(NSUInteger)stride;
 
 // reduce
 - (id)reduceWithInitialValue:(id)memo usingBlock:(SPReduceBlock)block;
+
 // reduce (memo is nil)
 - (id)reduceUsingBlock:(SPReduceBlock)block;
 
@@ -72,16 +100,43 @@ if you exclude the stride, they will use the NSFiltersDefaultStride of 256.
 
 // map
 - (id)mapUsingBlock:(SPMapBlock)block;
-- (id)mapUsingBlock:(SPMapBlock)block queue:(dispatch_queue_t)queue;
-- (id)mapUsingBlock:(SPMapBlock)block queue:(dispatch_queue_t)queue stride:(NSUInteger)stride;
+
+- (id)
+  mapUsingBlock:(SPMapBlock)block
+          queue:(dispatch_queue_t)queue;
+
+- (id)
+  mapUsingBlock:(SPMapBlock)block
+          queue:(dispatch_queue_t)queue
+         stride:(NSUInteger)stride;
+
 // reject
 - (id)rejectUsingBlock:(SPFilterBlock)block;
-- (id)rejectUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
-- (id)rejectUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue stride:(NSUInteger)stride;
+
+- (id)
+
+  rejectUsingBlock:(SPFilterBlock)block
+             queue:(dispatch_queue_t)queue;
+
+- (id)
+
+  rejectUsingBlock:(SPFilterBlock)block
+             queue:(dispatch_queue_t)queue
+            stride:(NSUInteger)stride;
+
 // select
 - (id)selectUsingBlock:(SPFilterBlock)block;
-- (id)selectUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
-- (id)selectUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue stride:(NSUInteger)stride;
+
+- (id)
+
+  selectUsingBlock:(SPFilterBlock)block
+             queue:(dispatch_queue_t)queue;
+
+- (id)
+
+  selectUsingBlock:(SPFilterBlock)block
+             queue:(dispatch_queue_t)queue
+            stride:(NSUInteger)stride;
 
 @end
 
@@ -89,24 +144,50 @@ if you exclude the stride, they will use the NSFiltersDefaultStride of 256.
 
 // map
 - (NSSet *)mappedSetUsingBlock:(SPMapBlock)block;
-- (NSSet *)mappedSetUsingBlock:(SPMapBlock)block queue:(dispatch_queue_t)queue;
-- (NSSet *)mappedSetUsingBlock:(SPMapBlock)block queue:(dispatch_queue_t)queue stride:(NSUInteger)stride;
+
+- (NSSet *)
+  mappedSetUsingBlock:(SPMapBlock)block
+                queue:(dispatch_queue_t)queue;
+
+- (NSSet *)
+  mappedSetUsingBlock:(SPMapBlock)block
+                queue:(dispatch_queue_t)queue
+               stride:(NSUInteger)stride;
+
 // reject
 - (NSSet *)rejectedSetUsingBlock:(SPFilterBlock)block;
-- (NSSet *)rejectedSetUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
-- (NSSet *)rejectedSetUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue stride:(NSUInteger)stride;
+
+- (NSSet *)
+  rejectedSetUsingBlock:(SPFilterBlock)block
+                  queue:(dispatch_queue_t)queue;
+
+- (NSSet *)
+  rejectedSetUsingBlock:(SPFilterBlock)block
+                  queue:(dispatch_queue_t)queue
+                 stride:(NSUInteger)stride;
+
 // select
 - (NSSet *)selectedSetUsingBlock:(SPFilterBlock)block;
-- (NSSet *)selectedSetUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
-- (NSSet *)selectedSetUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue stride:(NSUInteger)stride;
+
+- (NSSet *)
+  selectedSetUsingBlock:(SPFilterBlock)block
+                  queue:(dispatch_queue_t)queue;
+
+- (NSSet *)
+  selectedSetUsingBlock:(SPFilterBlock)block
+                  queue:(dispatch_queue_t)queue
+                 stride:(NSUInteger)stride;
 
 // reduce
 - (id)reduceWithInitialValue:(id)memo usingBlock:(SPReduceBlock)block;
+
 // reduce (memo is nil)
 - (id)reduceUsingBlock:(SPReduceBlock)block;
 
 // auxiliary getObjects:count: to place set objects in an unretained array
-- (void)getUnsafeObjects:(__unsafe_unretained id *)objects count:(NSUInteger)count;
+- (void)
+  getUnsafeObjects:(__unsafe_unretained id *)objects
+             count:(NSUInteger)count;
 
 @end
 
@@ -114,16 +195,39 @@ if you exclude the stride, they will use the NSFiltersDefaultStride of 256.
 
 // map
 - (id)mapUsingBlock:(SPMapBlock)block;
-- (id)mapUsingBlock:(SPMapBlock)block queue:(dispatch_queue_t)queue;
-- (id)mapUsingBlock:(SPMapBlock)block queue:(dispatch_queue_t)queue stride:(NSUInteger)stride;
+
+- (id)
+  mapUsingBlock:(SPMapBlock)block
+          queue:(dispatch_queue_t)queue;
+
+- (id)
+  mapUsingBlock:(SPMapBlock)block
+          queue:(dispatch_queue_t)queue
+         stride:(NSUInteger)stride;
+
 // reject
 - (id)rejectUsingBlock:(SPFilterBlock)block;
-- (id)rejectUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
-- (id)rejectUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue stride:(NSUInteger)stride;
+
+- (id)
+  rejectUsingBlock:(SPFilterBlock)block
+             queue:(dispatch_queue_t)queue;
+
+- (id)
+  rejectUsingBlock:(SPFilterBlock)block
+             queue:(dispatch_queue_t)queue
+            stride:(NSUInteger)stride;
+
 // select
 - (id)selectUsingBlock:(SPFilterBlock)block;
-- (id)selectUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
-- (id)selectUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue stride:(NSUInteger)stride;
+
+- (id)
+  selectUsingBlock:(SPFilterBlock)block
+             queue:(dispatch_queue_t)queue;
+
+- (id)
+  selectUsingBlock:(SPFilterBlock)block
+             queue:(dispatch_queue_t)queue
+            stride:(NSUInteger)stride;
 
 @end
 
