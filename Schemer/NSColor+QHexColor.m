@@ -29,6 +29,7 @@ q_ftoub(CGFloat f)
   return [self colorUsingColorSpaceName:NSDeviceRGBColorSpace];
 }
 
+
 + (NSColor *)colorFromHexString:(NSString *)hex
 {
   NSScanner *scanner = [NSScanner scannerWithString:hex];
