@@ -581,7 +581,6 @@ SPMapArrayUsingBlock(
   s_complete_block_t completion
   )
 {
-  __block id exception = nil;
   unsafe_id *objects = NULL;
   NSUInteger index = 0;
   const NSUInteger array_len = [array count];
