@@ -81,7 +81,7 @@ q_ftoub(CGFloat f)
             ];
   }
 
-  return @"";
+  return nil;
 }
 
 @end
