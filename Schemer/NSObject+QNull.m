@@ -22,7 +22,10 @@
 
 - (id)selfIfNotNull
 {
-  return !([self isKindOfClass:[NSNull class]] || self == NSNull.null) ? self : nil;
+  return
+    !([self isKindOfClass:[NSNull class]] || self == NSNull.null)
+    ? self
+    : nil;
 }
 
 @end
