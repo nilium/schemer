@@ -343,6 +343,11 @@ static NSArray *observedSchemeRulePaths()
                            toNewObject:newScheme
                               forPaths:observedSchemePaths()];
 
+  [self rebindObservationFromOldObject:oldScheme
+                           toNewObject:newScheme
+                              forPaths:@[@"rules"]
+                               options:QCaptureObservedChanges];
+
   NSArray *oldRules = oldScheme ? oldScheme.rules : nil;
   NSArray *newRules = newScheme ? newScheme.rules : nil;
 
