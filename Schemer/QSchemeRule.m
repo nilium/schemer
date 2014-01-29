@@ -118,7 +118,7 @@ schemeFlagStringForFlags(uint32_t flags)
 - (NSDictionary *)toPropertyList
 {
   NSMutableDictionary *plist = [NSMutableDictionary new];
-  plist[@"name"] = self.name;
+  plist[@"name"]  = self.name;
   plist[@"scope"] = [self.selectors componentsJoinedByString:@", "];
 
   NSMutableDictionary *settings = [NSMutableDictionary new];
