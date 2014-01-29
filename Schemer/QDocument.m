@@ -352,6 +352,7 @@ static NSArray *observedSchemeRulePaths()
 
 - (void)rebindObservationFromOldRules:(NSArray *)oldRulesArray toNewRules:(NSArray *)newRulesArray
 {
+  // TODO: Replace rebind with use of addObserver:toObjectsAtIndexes:forKeyPath:...
   NSArray *paths = observedSchemeRulePaths();
 
   NSSet *oldRules = nil;
