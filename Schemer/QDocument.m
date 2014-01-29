@@ -227,6 +227,8 @@ static NSArray *observedSchemeRulePaths()
 
   self.ruleScopeField.delegate = self;
   [self.rulesTable registerForDraggedTypes:@[QRulePasteType]];
+  [self.rulesTable setDraggingSourceOperationMask:NSDragOperationMove|NSDragOperationCopy
+                                         forLocal:YES];
 
   [self bindTableView];
 }
