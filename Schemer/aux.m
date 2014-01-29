@@ -22,6 +22,9 @@ colorIsDefined(NSColor *color)
 NSColor *
 blendColors(NSColor *bottom, NSColor *top)
 {
+  bottom = [bottom forScheme];
+  top = [top forScheme];
+
   CGFloat lr, lg, lb;
   CGFloat rr, rg, rb, a, ia;
   lr = lg = lb = rr = rg = rb = a = 0.0;
