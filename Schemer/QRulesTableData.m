@@ -11,6 +11,9 @@
 #import "QSchemeRule.h"
 
 
+NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
+
+
 @implementation QRulesTableData {
   QScheme *_scheme;
 }

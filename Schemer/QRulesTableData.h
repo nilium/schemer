@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+
 @class QScheme;
+
+
+extern NSString *const QRulePasteType;
+
 
 @interface QRulesTableData : NSObject <NSTableViewDataSource>
 

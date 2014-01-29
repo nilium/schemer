@@ -218,6 +218,7 @@ static NSArray *observedSchemeRulePaths()
   [super windowControllerDidLoadNib:aController];
 
   self.ruleScopeField.delegate = self;
+  [self.rulesTable registerForDraggedTypes:@[QRulePasteType]];
 
   [self bindTableView];
 }
