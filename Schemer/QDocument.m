@@ -93,7 +93,9 @@ static NSArray *observedSchemeRulePaths()
 
 #pragma mark Implementation
 
-@implementation QDocument
+@implementation QDocument {
+  NSInteger _midUpdate;
+}
 
 - (void)dealloc
 {
@@ -124,6 +126,8 @@ static NSArray *observedSchemeRulePaths()
        addObserver:self selector:@selector(userFontChanged:)
        name:QFontChangeNotification
        object:nil];
+
+      _midUpdate = 0;
     }
     return self;
 }
@@ -326,7 +330,7 @@ static NSArray *observedSchemeRulePaths()
       [self rebindObservationFromOldRules:[change[NSKeyValueChangeOldKey] selfIfNotNull]
                                toNewRules:[change[NSKeyValueChangeNewKey] selfIfNotNull]];
 
-      if (self.rulesTable) {
+      if (self.rulesTable && _midUpdate == 0) {
         [self.rulesTable reloadData];
       }
     }
@@ -441,11 +445,13 @@ static NSArray *observedSchemeRulePaths()
 - (IBAction)appendNewRule:(id)sender {
   NSTableView *table = self.rulesTable;
   if (table) {
+    ++_midUpdate;
+    NSIndexSet *indices = [NSIndexSet indexSetWithIndex:[self.scheme.rules count]];
     self.scheme.rules = [self.scheme.rules arrayByAddingObject:[QSchemeRule new]];
-    NSIndexSet *indices = [NSIndexSet indexSetWithIndex:[self.scheme.rules count] - 1];
     [table insertRowsAtIndexes:indices withAnimation:0];
     [table selectRowIndexes:indices byExtendingSelection:NO];
     [table scrollRowToVisible:indices.lastIndex];
+    --_midUpdate;
   }
 }
 
@@ -456,10 +462,12 @@ static NSArray *observedSchemeRulePaths()
     NSIndexSet *indices = table.selectedRowIndexes;
 
     if ([indices count]) {
+      ++_midUpdate;
       NSMutableArray *rules = [self.scheme.rules mutableCopy];
       [rules removeObjectsAtIndexes:indices];
       self.scheme.rules = rules;
       [table removeRowsAtIndexes:indices withAnimation:NSTableViewAnimationSlideLeft];
+      --_midUpdate;
     }
   }
 }
