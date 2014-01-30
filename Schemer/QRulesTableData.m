@@ -35,21 +35,26 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
 }
 
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+- (id)
+                  tableView:(NSTableView *)tableView
+  objectValueForTableColumn:(NSTableColumn *)tableColumn
+                        row:(NSInteger)row
 {
-  // Used to return the actual data for the column, but it's not really being used, this just
-  // returns nil, now, since doing otherwise would cause the tableView to try to set the object
-  // value of the controls to something and that's not pretty.
+  // Used to return the actual data for the column, but it's not really being
+  // used, this just returns nil, now, since doing otherwise would cause the
+  // tableView to try to set the object value of the controls to something and
+  // that's not pretty.
   return nil;
 }
 
 
 #pragma mark Drag / drop support
 
-- (BOOL)tableView:(NSTableView *)tableView
-       acceptDrop:(id<NSDraggingInfo>)info
-              row:(NSInteger)row
-    dropOperation:(NSTableViewDropOperation)dropOperation
+- (BOOL)
+      tableView:(NSTableView *)tableView
+     acceptDrop:(id<NSDraggingInfo>)info
+            row:(NSInteger)row
+  dropOperation:(NSTableViewDropOperation)dropOperation
 {
   if (dropOperation == NSTableViewDropOn) {
     return NO;
@@ -59,10 +64,11 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
   id source = [info draggingSource];
   NSPasteboard *paste = [info draggingPasteboard];
 
-  NSArray *items = [[paste readObjectsForClasses:@[[NSPasteboardItem class]] options:nil]
-                    mappedTo:^id(id obj) {
-                      return [obj propertyListForType:QRulePasteType];
-                    }];
+  NSArray *items =
+    [[paste readObjectsForClasses:@[[NSPasteboardItem class]] options:nil]
+     mappedTo:^(id obj) {
+       return [obj propertyListForType:QRulePasteType];
+     }];
 
   NSMutableIndexSet *indices = [NSMutableIndexSet new];
 
@@ -86,23 +92,23 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
   if (row >= count) {
     [rules addObjectsFromArray:newRules];
   } else {
-    NSIndexSet *newRuleIndices =
-      [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(row, [newRules count])];
+    NSRange range = NSMakeRange(row, [newRules count]);
+    NSIndexSet *newRuleIndices = [NSIndexSet indexSetWithIndexesInRange:range];
 
     [rules insertObjects:newRules atIndexes:newRuleIndices];
   }
 
   _scheme.rules = rules;
-  
 
   return YES;
 }
 
 
-- (NSDragOperation)tableView:(NSTableView *)tableView
-                validateDrop:(id<NSDraggingInfo>)info
-                 proposedRow:(NSInteger)row
-       proposedDropOperation:(NSTableViewDropOperation)dropOperation
+- (NSDragOperation)
+              tableView:(NSTableView *)tableView
+           validateDrop:(id<NSDraggingInfo>)info
+            proposedRow:(NSInteger)row
+  proposedDropOperation:(NSTableViewDropOperation)dropOperation
 {
   if (dropOperation != NSTableViewDropAbove) {
     [tableView setDropRow:row dropOperation:NSTableViewDropAbove];
@@ -112,7 +118,8 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
     id source = [info draggingSource];
     NSUInteger mask = [info draggingSourceOperationMask];
 
-    if (mask == NSDragOperationCopy || (source != tableView && (mask & NSDragOperationCopy))) {
+    if (   mask == NSDragOperationCopy
+        || (source != tableView && (mask & NSDragOperationCopy))) {
       return NSDragOperationCopy;
     }
 
@@ -125,11 +132,16 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
 }
 
 
-- (id<NSPasteboardWriting>)tableView:(NSTableView *)tableView pasteboardWriterForRow:(NSInteger)row
+- (id<NSPasteboardWriting>)
+               tableView:(NSTableView *)tableView
+  pasteboardWriterForRow:(NSInteger)row
 {
   NSPasteboardItem *item = [NSPasteboardItem new];
-  [item setPropertyList:@{ @"row": @(row), @"rule": [_scheme.rules[row] toPropertyList] }
-                forType:QRulePasteType];
+  NSDictionary *rulePList = @{
+    @"row":   @(row),
+    @"rule":  [_scheme.rules[row] toPropertyList]
+  };
+  [item setPropertyList:rulePList forType:QRulePasteType];
   return item;
 }
 

@@ -15,21 +15,47 @@
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
-  return self.rule ? [self.rule.selectors count] : 0;
+  if (self.rule) {
+    return self.rule.selectors.count;
+  }
+
+  return 0;
 }
 
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
-{
-  return self.rule ? self.rule.selectors[row] : nil;
-}
-
-
-- (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+- (id)
+                  tableView:(NSTableView *)tableView
+  objectValueForTableColumn:(NSTableColumn *)tableColumn
+                        row:(NSInteger)row
 {
   if (self.rule) {
+    NSArray *selectors = self.rule.selectors;
+    if (row >= 0 && row < [selectors count]) {
+      return selectors[row];
+    }
+  }
+
+  return nil;
+}
+
+
+- (void)
+       tableView:(NSTableView *)tableView
+  setObjectValue:(id)object
+  forTableColumn:(NSTableColumn *)tableColumn
+             row:(NSInteger)row
+{
+  if (object && self.rule) {
+    NSString *selector = nil;
+
+    if ([object isKindOfClass:[NSString class]]) {
+      selector = [object copy];
+    } else {
+      selector = [object description];
+    }
+
     NSMutableArray *selectors = [self.rule.selectors mutableCopy];
-    selectors[row] = [object description];
+    selectors[row] = selector;
     self.rule.selectors = selectors;
   }
 }

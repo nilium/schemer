@@ -13,6 +13,9 @@
 
 
 static NSDictionary *g_columnIDs = nil;
+static NSDictionary *g_underlineAttrs = nil;
+static SEL setCaretSelector = nil;
+static SEL setSelectionAttrsSelector = nil;
 
 
 NSString *const QRuleSelectedNotification = @"QRuleSelectedNotification";
@@ -23,7 +26,10 @@ NSString *const QSelectedRules = @"rules";
 
 @property (weak, readwrite) QSchemeRule *selectedRule;
 
-- (void)bindView:(NSView *)view toRule:(QSchemeRule *)rule forColumn:(int)column;
+- (void)
+   bindView:(NSView *)view
+     toRule:(QSchemeRule *)rule
+  forColumn:(int)column;
 
 @end
 
@@ -53,6 +59,13 @@ enum {
       @"background": @(COL_BACKGROUND),
       @"flags": @(COL_FLAGS)
     };
+
+    g_underlineAttrs = @{
+      NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)
+    };
+
+    setCaretSelector = @selector(setInsertionPointColor:);
+    setSelectionAttrsSelector = @selector(setSelectedTextAttributes:);
   });
 
   [super initialize];
@@ -69,21 +82,34 @@ enum {
 }
 
 
-- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+- (NSView *)
+           tableView:(NSTableView *)tableView
+  viewForTableColumn:(NSTableColumn *)tableColumn
+                 row:(NSInteger)row
 {
   NSInteger rowCount = [_scheme.rules count];
   if (row >= rowCount) {
     return nil;
   }
-  NSView *view = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
-  [self bindView:view toRule:_scheme.rules[row] forColumn:[g_columnIDs[tableColumn.identifier] intValue]];
+  NSView *view =
+    [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+
+  [self bindView:view
+          toRule:_scheme.rules[row]
+       forColumn:[g_columnIDs[tableColumn.identifier] intValue]];
+
   return view;
 }
 
 
 static
 NSFont *
-convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSFontManager *manager)
+convertFontWithOptionalTrait(
+  BOOL flag,
+  NSFontTraitMask trait,
+  NSFont *font,
+  NSFontManager *manager
+  )
 {
   if (flag) {
     return [manager convertFont:font toHaveTrait:trait];
@@ -103,22 +129,37 @@ convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSF
     uint32_t flags = rule.flags.unsignedIntValue;
 
     NSFontManager *manager = [NSFontManager sharedFontManager];
-    font = convertFontWithOptionalTrait(flags & QBoldFlag, NSBoldFontMask, font, manager);
-    font = convertFontWithOptionalTrait(flags & QItalicFlag, NSItalicFontMask, font, manager);
+
+    font = convertFontWithOptionalTrait(
+      flags & QBoldFlag,
+      NSBoldFontMask,
+      font,
+      manager
+      );
+
+    font = convertFontWithOptionalTrait(
+      flags & QItalicFlag,
+      NSItalicFontMask,
+      font,
+      manager
+      );
 
     text.font = font;
-    text.textColor = colorIsDefined(rule.foreground) ? rule.foreground : _scheme.foregroundColor;
+
+    text.textColor =
+      colorIsDefined(rule.foreground)
+      ? rule.foreground
+      : _scheme.foregroundColor;
+
     text.backgroundColor =
       colorIsDefined(rule.background)
       ? blendColors(_scheme.backgroundColor, rule.background)
       : [_scheme.backgroundColor colorWithAlphaComponent:0.75];
 
     if (flags & QUnderlineFlag) {
-      NSAttributedString *name =
+      text.attributedStringValue =
       	[[NSAttributedString alloc]
-         initWithString:rule.name
-         attributes:@{ NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle) }];
-      text.attributedStringValue = name;
+         initWithString:rule.name attributes:g_underlineAttrs];
     } else {
       text.stringValue = rule.name;
     }
@@ -226,7 +267,9 @@ convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSF
 {
   NSTableColumn *column = tableView.tableColumns[tableView.clickedColumn];
   if ([g_columnIDs[column.identifier] intValue] == COL_NAME) {
-    NSView *view = [tableView viewAtColumn:tableView.clickedColumn row:tableView.clickedRow makeIfNecessary:NO];
+    NSView *view = [tableView viewAtColumn:tableView.clickedColumn
+                                       row:tableView.clickedRow
+                           makeIfNecessary:NO];
     if (view) {
       NSTextField *text = (NSTextField *)view;
       [text setEditable:YES];
@@ -236,13 +279,13 @@ convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSF
 
       NSText *editor = text.currentEditor;
       BOOL isTextView = [editor isKindOfClass:[NSTextView class]];
-      if (isTextView || [editor respondsToSelector:@selector(setInsertionPointColor:)]) {
+
+      if (isTextView || [editor respondsToSelector:setCaretSelector]) {
         [(NSTextView *)editor setInsertionPointColor:_scheme.caretColor];
       }
 
-      if (isTextView || [editor respondsToSelector:@selector(setSelectedTextAttributes:)]) {
-        [(NSTextView *)editor setSelectedTextAttributes:
-        @{
+      if (isTextView || [editor respondsToSelector:setSelectionAttrsSelector]) {
+        [(NSTextView *)editor setSelectedTextAttributes: @{
           NSBackgroundColorAttributeName: _scheme.selectionColor
         }];
       }
@@ -295,22 +338,5 @@ convertFontWithOptionalTrait(BOOL flag, NSFontTraitMask trait, NSFont *font, NSF
     rule.selectors = selectors;
   }
 }
-
-
-//- (QSchemeRule *)selectedRule
-//{
-//  if (!_tableView) {
-//    return nil;
-//  }
-//
-//  NSIndexSet *indices = _tableView.selectedRowIndexes;
-//  NSArray *rules = [_scheme.rules objectsAtIndexes:indices];
-//
-//  if ([rules count] != 1) {
-//    return nil;
-//  }
-//
-//  return rules.lastObject;
-//}
 
 @end

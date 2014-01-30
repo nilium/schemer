@@ -13,6 +13,19 @@
 #import "aux.h"
 
 
+static
+BOOL
+isBaseRuleDictionary(NSDictionary *rule);
+
+static
+NSDictionary *
+getBaseRuleDictionary(NSArray *settings);
+
+static
+NSArray *
+getRulesDictionaries(NSArray *settings);
+
+
 static id (^const copyRuleBlock)(id) = ^(id obj) {
   return [obj copy];
 };
@@ -23,11 +36,20 @@ static id (^const convertPListToRuleBlock)(id) = ^id(id obj) {
 };
 
 
+static BOOL (^const indexOfBaseRulesDictTest)(id, NSUInteger, BOOL *) =
+  ^(id obj, NSUInteger index, BOOL *stop) {
+    return isBaseRuleDictionary(obj);
+  };
+
+
 static
 BOOL
 isBaseRuleDictionary(NSDictionary *rule)
 {
-  return 1 == [rule count] && nil != rule[@"settings"];
+  return
+       [rule isKindOfClass:[NSDictionary class]]
+    && 1 == [rule count]
+    && nil != rule[@"settings"];
 }
 
 
@@ -35,15 +57,13 @@ static
 NSDictionary *
 getBaseRuleDictionary(NSArray *settings)
 {
-  for (id value in settings) {
-    if (![value isKindOfClass:[NSDictionary class]]) {
-      continue;
-    }
+  const NSUInteger index =
+    [settings indexOfObjectPassingTest:indexOfBaseRulesDictTest];
 
-    if (isBaseRuleDictionary(value)) {
-      return value;
-    }
+  if (index != NSNotFound) {
+    return settings[index];
   }
+
   return nil;
 }
 
@@ -53,7 +73,7 @@ NSArray *
 getRulesDictionaries(NSArray *settings)
 {
   return [settings rejectedBy:^BOOL(id obj) {
-    return ![obj isKindOfClass:[NSDictionary class]] || isBaseRuleDictionary(obj);
+    return isBaseRuleDictionary(obj);
   }];
 }
 
@@ -71,17 +91,29 @@ getRulesDictionaries(NSArray *settings)
 {
   if ((self = [super init])) {
     NSColor *black = [NSColor.blackColor forScheme];
-    self.foregroundColor            = black;
-    self.backgroundColor            = [NSColor.whiteColor forScheme];
-    self.lineHighlightColor         = [NSColor colorWithWhite:0.0f alpha:0.07f];
-    self.selectionColor             = [[NSColor selectedTextBackgroundColor] forScheme];
-    self.selectionBorderColor       = [self.selectionColor colorWithAlphaComponent:0.0f];
-    self.inactiveSelectionColor     = [self.selectionColor colorWithAlphaComponent:0.5f];
-    self.invisiblesColor            = [[NSColor colorWithWhite:0.75f alpha:1.0f] forScheme];
-    self.caretColor                 = black;
-    self.uuid                       = [NSUUID UUID];
-    self.rules                      = @[];
+
+    self.foregroundColor = black;
+    self.backgroundColor = [NSColor.whiteColor forScheme];
+
+    self.lineHighlightColor =
+      [[NSColor colorWithWhite:0.0f alpha:0.07f] forScheme];
+
+    self.selectionColor =
+      [[NSColor selectedTextBackgroundColor] forScheme];
+    self.selectionBorderColor =
+      [self.selectionColor colorWithAlphaComponent:0.0f];
+    self.inactiveSelectionColor =
+      [self.selectionColor colorWithAlphaComponent:0.5f];
+
+    self.invisiblesColor =
+      [[NSColor colorWithWhite:0.75f alpha:1.0f] forScheme];
+
+    self.caretColor = black;
+
+    self.uuid = [NSUUID UUID];
+    self.rules = @[];
   }
+
   return self;
 }
 
@@ -91,7 +123,10 @@ getRulesDictionaries(NSArray *settings)
   static dispatch_queue_t conversion_queue = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    conversion_queue = dispatch_queue_create("net.spifftastic.schemer.convert", DISPATCH_QUEUE_CONCURRENT);
+    conversion_queue = dispatch_queue_create(
+      "net.spifftastic.schemer.convert",
+      DISPATCH_QUEUE_CONCURRENT
+      );
   });
 
   if ((self = [self init])) {
@@ -102,24 +137,45 @@ getRulesDictionaries(NSArray *settings)
       return nil;
     }
 
-    NSDictionary *settings      = baseRules[@"settings"];
-    self.foregroundColor        = [colorSetting(settings, @"foreground",        self.foregroundColor)
-                                    colorWithAlphaComponent:1.0];
-    self.backgroundColor        = [colorSetting(settings, @"background",        self.backgroundColor)
-                                   colorWithAlphaComponent:1.0];
-    self.lineHighlightColor     = colorSetting(settings,  @"lineHighlight",     self.lineHighlightColor);
-    self.selectionColor         = colorSetting(settings,  @"selection",         self.selectionColor);
-    self.selectionBorderColor   = colorSetting(settings,  @"selectionBorder",   self.selectionBorderColor);
-    self.inactiveSelectionColor = colorSetting(settings,  @"inactiveSelection", self.inactiveSelectionColor);
-    self.invisiblesColor        = colorSetting(settings,  @"invisibles",        self.invisiblesColor);
-    self.caretColor             = colorSetting(settings,  @"caret",             self.caretColor);
+    NSDictionary *settings = baseRules[@"settings"];
 
-    self.rules = [rules mappedTo:convertPListToRuleBlock queue:conversion_queue stride:8];
+    self.foregroundColor =
+      [colorSetting(settings, @"foreground", self.foregroundColor)
+       colorWithAlphaComponent:1.0];
 
-    self.uuid =
-      baseRules[@"uuid"]
-      ? [[NSUUID alloc] initWithUUIDString:baseRules[@"uuid"]]
-      : [NSUUID UUID];
+    self.backgroundColor =
+      [colorSetting(settings, @"background", self.backgroundColor)
+       colorWithAlphaComponent:1.0];
+
+    self.lineHighlightColor =
+      colorSetting(settings, @"lineHighlight", self.lineHighlightColor);
+
+    self.selectionColor =
+      colorSetting(settings, @"selection", self.selectionColor);
+
+    self.selectionBorderColor =
+      colorSetting(settings, @"selectionBorder", self.selectionBorderColor);
+
+    self.inactiveSelectionColor =
+      colorSetting(settings, @"inactiveSelection", self.inactiveSelectionColor);
+
+    self.invisiblesColor =
+      colorSetting(settings, @"invisibles", self.invisiblesColor);
+
+    self.caretColor = colorSetting(settings, @"caret", self.caretColor);
+
+    self.rules =
+      [rules mappedTo:convertPListToRuleBlock queue:conversion_queue stride:16];
+
+    NSString *uuidString = baseRules[@"uuid"];
+    if (uuidString) {
+      NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:uuidString];
+      if (uuid) {
+        self.uuid = uuid;
+      } else {
+        NSLog(@"%@ is an invalid UUID, generating a new one.", uuidString);
+      }
+    }
   }
 
   return self;
@@ -156,12 +212,15 @@ getRulesDictionaries(NSArray *settings)
 
   plist[@"uuid"] = self.uuid.UUIDString;
 
-  NSMutableArray *baseRules = [NSMutableArray arrayWithCapacity:[self.rules count] + 1];
+  NSMutableArray *baseRules =
+    [NSMutableArray arrayWithCapacity:[self.rules count] + 1];
 
-  NSMutableDictionary *settings = [NSMutableDictionary dictionaryWithCapacity:8];
+  NSMutableDictionary *settings =
+    [NSMutableDictionary dictionaryWithCapacity:8];
 
   settings[@"foreground"] = [self.foregroundColor toHexColorString];
-  settings[@"background"] = [[self.backgroundColor colorWithAlphaComponent:1.0] toHexColorString];
+  settings[@"background"] =
+    [[self.backgroundColor colorWithAlphaComponent:1.0] toHexColorString];
 
   putColorIfVisible(settings, @"lineHighlight", self.lineHighlightColor);
   putColorIfVisible(settings, @"selection", self.selectionColor);

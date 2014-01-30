@@ -136,7 +136,8 @@ schemeFlagStringForFlags(uint32_t flags)
   putColorIfVisible(settings, @"background", self.background);
 
   if (self.flags.unsignedIntValue != QNoFlags) {
-    settings[@"fontStyle"] = schemeFlagStringForFlags(self.flags.unsignedIntValue);
+    uint32_t flagsMask = self.flags.unsignedIntValue;
+    settings[@"fontStyle"] = schemeFlagStringForFlags(flagsMask);
   }
 
   plist[@"settings"] = settings;
