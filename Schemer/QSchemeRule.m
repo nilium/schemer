@@ -106,9 +106,9 @@ schemeFlagStringForFlags(uint32_t flags)
     if (scope) {
       self.selectors =
         [[[scope componentsSeparatedByString:@","]
-          mappedArrayUsingBlock:^id(id obj) {
+          mappedTo:^id(id obj) {
             return [obj stringByTrimmingCharactersInSet:charset];
-          }] selectedArrayUsingBlock:^BOOL(id obj) {
+          }] selectedBy:^BOOL(id obj) {
             return [obj length] > 0;
           }];
     }

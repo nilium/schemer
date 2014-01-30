@@ -60,7 +60,7 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
   NSPasteboard *paste = [info draggingPasteboard];
 
   NSArray *items = [[paste readObjectsForClasses:@[[NSPasteboardItem class]] options:nil]
-                    mappedArrayUsingBlock:^id(id obj) {
+                    mappedTo:^id(id obj) {
                       return [obj propertyListForType:QRulePasteType];
                     }];
 
@@ -78,7 +78,7 @@ NSString *const QRulePasteType = @"net.spifftastic.schemer.paste.rule";
 
   NSMutableArray *rules = [_scheme.rules mutableCopy];
   [rules removeObjectsAtIndexes:indices];
-  NSArray *newRules = [items mappedArrayUsingBlock:^id(NSDictionary *item) {
+  NSArray *newRules = [items mappedTo:^id(NSDictionary *item) {
     return [[QSchemeRule alloc] initWithPropertyList:item[@"rule"]];
   }];
 

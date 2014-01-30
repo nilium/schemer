@@ -53,40 +53,34 @@ if you exclude the stride, they will use the NSFiltersDefaultStride of 256.
 @interface NSArray (SPImmutableArrayFilters)
 
 // map
-- (NSArray *)mappedArrayUsingBlock:(SPMapBlock)block;
+- (NSArray *)mappedTo:(SPMapBlock)block;
+
+- (NSArray *)mappedTo:(SPMapBlock)block queue:(dispatch_queue_t)queue;
 
 - (NSArray *)
-  mappedArrayUsingBlock:(SPMapBlock)block
-                  queue:(dispatch_queue_t)queue;
-
-- (NSArray *)
-  mappedArrayUsingBlock:(SPMapBlock)block
-                  queue:(dispatch_queue_t)queue
-                 stride:(NSUInteger)stride;
+  mappedTo:(SPMapBlock)block
+     queue:(dispatch_queue_t)queue
+    stride:(NSUInteger)stride;
 
 // reject
-- (NSArray *)rejectedArrayUsingBlock:(SPFilterBlock)block;
+- (NSArray *)rejectedBy:(SPFilterBlock)block;
+
+- (NSArray *)rejectedBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
 
 - (NSArray *)
-  rejectedArrayUsingBlock:(SPFilterBlock)block
-                    queue:(dispatch_queue_t)queue;
-
-- (NSArray *)
-  rejectedArrayUsingBlock:(SPFilterBlock)block
-                    queue:(dispatch_queue_t)queue
-                   stride:(NSUInteger)stride;
+  rejectedBy:(SPFilterBlock)block
+       queue:(dispatch_queue_t)queue
+      stride:(NSUInteger)stride;
 
 // select
-- (NSArray *)selectedArrayUsingBlock:(SPFilterBlock)block;
+- (NSArray *)selectedBy:(SPFilterBlock)block;
+
+- (NSArray *)selectedBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
 
 - (NSArray *)
-  selectedArrayUsingBlock:(SPFilterBlock)block
-                    queue:(dispatch_queue_t)queue;
-
-- (NSArray *)
-  selectedArrayUsingBlock:(SPFilterBlock)block
-                    queue:(dispatch_queue_t)queue
-                   stride:(NSUInteger)stride;
+  selectedBy:(SPFilterBlock)block
+       queue:(dispatch_queue_t)queue
+      stride:(NSUInteger)stride;
 
 // reduce
 - (id)reduceWithInitialValue:(id)memo usingBlock:(SPReduceBlock)block;
@@ -99,84 +93,68 @@ if you exclude the stride, they will use the NSFiltersDefaultStride of 256.
 @interface NSMutableArray (SPMutableArrayFilters)
 
 // map
-- (id)mapUsingBlock:(SPMapBlock)block;
+- (id)mapTo:(SPMapBlock)block;
+
+- (id)mapTo:(SPMapBlock)block queue:(dispatch_queue_t)queue;
 
 - (id)
-  mapUsingBlock:(SPMapBlock)block
-          queue:(dispatch_queue_t)queue;
-
-- (id)
-  mapUsingBlock:(SPMapBlock)block
-          queue:(dispatch_queue_t)queue
-         stride:(NSUInteger)stride;
+   mapTo:(SPMapBlock)block
+   queue:(dispatch_queue_t)queue
+  stride:(NSUInteger)stride;
 
 // reject
-- (id)rejectUsingBlock:(SPFilterBlock)block;
+- (id)rejectBy:(SPFilterBlock)block;
+
+- (id)rejectBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
 
 - (id)
-
-  rejectUsingBlock:(SPFilterBlock)block
-             queue:(dispatch_queue_t)queue;
-
-- (id)
-
-  rejectUsingBlock:(SPFilterBlock)block
-             queue:(dispatch_queue_t)queue
-            stride:(NSUInteger)stride;
+  rejectBy:(SPFilterBlock)block
+     queue:(dispatch_queue_t)queue
+    stride:(NSUInteger)stride;
 
 // select
-- (id)selectUsingBlock:(SPFilterBlock)block;
+- (id)selectBy:(SPFilterBlock)block;
+
+- (id)selectBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
 
 - (id)
-
-  selectUsingBlock:(SPFilterBlock)block
-             queue:(dispatch_queue_t)queue;
-
-- (id)
-
-  selectUsingBlock:(SPFilterBlock)block
-             queue:(dispatch_queue_t)queue
-            stride:(NSUInteger)stride;
+  selectBy:(SPFilterBlock)block
+     queue:(dispatch_queue_t)queue
+    stride:(NSUInteger)stride;
 
 @end
 
 @interface NSSet (SPImmutableSetFilters)
 
 // map
-- (NSSet *)mappedSetUsingBlock:(SPMapBlock)block;
+- (NSSet *)mappedTo:(SPMapBlock)block;
+
+- (NSSet *)mappedTo:(SPMapBlock)block queue:(dispatch_queue_t)queue;
 
 - (NSSet *)
-  mappedSetUsingBlock:(SPMapBlock)block
-                queue:(dispatch_queue_t)queue;
-
-- (NSSet *)
-  mappedSetUsingBlock:(SPMapBlock)block
-                queue:(dispatch_queue_t)queue
-               stride:(NSUInteger)stride;
+  mappedTo:(SPMapBlock)block
+     queue:(dispatch_queue_t)queue
+    stride:(NSUInteger)stride;
 
 // reject
-- (NSSet *)rejectedSetUsingBlock:(SPFilterBlock)block;
+- (NSSet *)rejectedBy:(SPFilterBlock)block;
+
+- (NSSet *)rejectedBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
 
 - (NSSet *)
-  rejectedSetUsingBlock:(SPFilterBlock)block
-                  queue:(dispatch_queue_t)queue;
-
-- (NSSet *)
-  rejectedSetUsingBlock:(SPFilterBlock)block
-                  queue:(dispatch_queue_t)queue
-                 stride:(NSUInteger)stride;
+  rejectedBy:(SPFilterBlock)block
+       queue:(dispatch_queue_t)queue
+      stride:(NSUInteger)stride;
 
 // select
-- (NSSet *)selectedSetUsingBlock:(SPFilterBlock)block;
+- (NSSet *)selectedBy:(SPFilterBlock)block;
+
+- (NSSet *)selectedBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
 
 - (NSSet *)
-  selectedSetUsingBlock:(SPFilterBlock)block
-                  queue:(dispatch_queue_t)queue;
-
-- (NSSet *)
-  selectedSetUsingBlock:(SPFilterBlock)block
-                  queue:(dispatch_queue_t)queue
-                 stride:(NSUInteger)stride;
+  selectedBy:(SPFilterBlock)block
+       queue:(dispatch_queue_t)queue
+      stride:(NSUInteger)stride;
 
 // reduce
 - (id)reduceWithInitialValue:(id)memo usingBlock:(SPReduceBlock)block;
@@ -194,40 +172,34 @@ if you exclude the stride, they will use the NSFiltersDefaultStride of 256.
 @interface NSMutableSet (SPMutableSetFilters)
 
 // map
-- (id)mapUsingBlock:(SPMapBlock)block;
+- (id)mapTo:(SPMapBlock)block;
+
+- (id)mapTo:(SPMapBlock)block queue:(dispatch_queue_t)queue;
 
 - (id)
-  mapUsingBlock:(SPMapBlock)block
-          queue:(dispatch_queue_t)queue;
-
-- (id)
-  mapUsingBlock:(SPMapBlock)block
-          queue:(dispatch_queue_t)queue
-         stride:(NSUInteger)stride;
+   mapTo:(SPMapBlock)block
+   queue:(dispatch_queue_t)queue
+  stride:(NSUInteger)stride;
 
 // reject
-- (id)rejectUsingBlock:(SPFilterBlock)block;
+- (id)rejectBy:(SPFilterBlock)block;
+
+- (id)rejectBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
 
 - (id)
-  rejectUsingBlock:(SPFilterBlock)block
-             queue:(dispatch_queue_t)queue;
-
-- (id)
-  rejectUsingBlock:(SPFilterBlock)block
-             queue:(dispatch_queue_t)queue
-            stride:(NSUInteger)stride;
+  rejectBy:(SPFilterBlock)block
+     queue:(dispatch_queue_t)queue
+    stride:(NSUInteger)stride;
 
 // select
-- (id)selectUsingBlock:(SPFilterBlock)block;
+- (id)selectBy:(SPFilterBlock)block;
+
+- (id)selectBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue;
 
 - (id)
-  selectUsingBlock:(SPFilterBlock)block
-             queue:(dispatch_queue_t)queue;
-
-- (id)
-  selectUsingBlock:(SPFilterBlock)block
-             queue:(dispatch_queue_t)queue
-            stride:(NSUInteger)stride;
+  selectBy:(SPFilterBlock)block
+     queue:(dispatch_queue_t)queue
+    stride:(NSUInteger)stride;
 
 @end
 

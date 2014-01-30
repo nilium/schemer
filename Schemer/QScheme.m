@@ -52,7 +52,7 @@ static
 NSArray *
 getRulesDictionaries(NSArray *settings)
 {
-  return [settings rejectedArrayUsingBlock:^BOOL(id obj) {
+  return [settings rejectedBy:^BOOL(id obj) {
     return ![obj isKindOfClass:[NSDictionary class]] || isBaseRuleDictionary(obj);
   }];
 }
@@ -114,7 +114,7 @@ getRulesDictionaries(NSArray *settings)
     self.invisiblesColor        = colorSetting(settings,  @"invisibles",        self.invisiblesColor);
     self.caretColor             = colorSetting(settings,  @"caret",             self.caretColor);
 
-    self.rules = [rules mappedArrayUsingBlock:convertPListToRuleBlock queue:conversion_queue stride:8];
+    self.rules = [rules mappedTo:convertPListToRuleBlock queue:conversion_queue stride:8];
 
     self.uuid =
       baseRules[@"uuid"]
@@ -137,7 +137,7 @@ getRulesDictionaries(NSArray *settings)
     self.inactiveSelectionColor = scheme.inactiveSelectionColor;
     self.invisiblesColor        = scheme.invisiblesColor;
     self.caretColor             = scheme.caretColor;
-    self.rules                  = [scheme.rules mappedArrayUsingBlock:copyRuleBlock];
+    self.rules                  = [scheme.rules mappedTo:copyRuleBlock];
     self.uuid                   = scheme.uuid;
   }
   return self;

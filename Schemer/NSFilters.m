@@ -709,28 +709,24 @@ invalid_set_mapping_serial:
 
 @implementation NSArray (SPImmutableArrayFilters)
 
-- (NSArray *)mappedArrayUsingBlock:(SPMapBlock)block
+- (NSArray *)mappedTo:(SPMapBlock)block
 {
-  return [self mappedArrayUsingBlock:block
+  return [self mappedTo:block
                                queue:nil
                               stride:NSFiltersDefaultStride];
 }
 
 
-- (NSArray *)
-  mappedArrayUsingBlock:(SPMapBlock)block
-                 queue:(dispatch_queue_t)queue
+- (NSArray *)mappedTo:(SPMapBlock)block queue:(dispatch_queue_t)queue
 {
-  return [self mappedArrayUsingBlock:block
-                               queue:nil
-                              stride:NSFiltersDefaultStride];
+  return [self mappedTo:block queue:nil stride:NSFiltersDefaultStride];
 }
 
 
 - (NSArray *)
-  mappedArrayUsingBlock:(SPMapBlock)block
-                  queue:(dispatch_queue_t)queue
-                 stride:(NSUInteger)stride
+  mappedTo:(SPMapBlock)block
+     queue:(dispatch_queue_t)queue
+    stride:(NSUInteger)stride
 {
   __block NSArray *result = nil;
   NSAssert(stride > 0, @"Stride must be greater than zero.");
@@ -752,7 +748,7 @@ invalid_set_mapping_serial:
 }
 
 
-- (NSArray *)rejectedArrayUsingBlock:(SPFilterBlock)block
+- (NSArray *)rejectedBy:(SPFilterBlock)block
 {
   return SPArrayFilteredUsingBlock(
     self,
@@ -764,7 +760,7 @@ invalid_set_mapping_serial:
 }
 
 
-- (NSArray *)selectedArrayUsingBlock:(SPFilterBlock)block
+- (NSArray *)selectedBy:(SPFilterBlock)block
 {
   return SPArrayFilteredUsingBlock(
     self,
@@ -775,9 +771,7 @@ invalid_set_mapping_serial:
     );
 }
 
-- (NSArray *)
-  rejectedArrayUsingBlock:(SPFilterBlock)block
-                    queue:(dispatch_queue_t)queue
+- (NSArray *)rejectedBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue
 {
   return SPArrayFilteredUsingBlock(
     self,
@@ -788,9 +782,7 @@ invalid_set_mapping_serial:
     );
 }
 
-- (NSArray *)
-  selectedArrayUsingBlock:(SPFilterBlock)block
-                    queue:(dispatch_queue_t)queue
+- (NSArray *)selectedBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue
 {
   return SPArrayFilteredUsingBlock(
     self,
@@ -802,18 +794,18 @@ invalid_set_mapping_serial:
 }
 
 - (NSArray *)
-  rejectedArrayUsingBlock:(SPFilterBlock)block
-                    queue:(dispatch_queue_t)queue
-                   stride:(NSUInteger)stride
+  rejectedBy:(SPFilterBlock)block
+       queue:(dispatch_queue_t)queue
+      stride:(NSUInteger)stride
 {
   NSAssert(stride > 0, @"Stride must be greater than zero.");
   return SPArrayFilteredUsingBlock(self, block, TRUE, stride, queue);
 }
 
 - (NSArray *)
-  selectedArrayUsingBlock:(SPFilterBlock)block
-                    queue:(dispatch_queue_t)queue
-                   stride:(NSUInteger)stride
+  selectedBy:(SPFilterBlock)block
+       queue:(dispatch_queue_t)queue
+      stride:(NSUInteger)stride
 {
   NSAssert(stride > 0, @"Stride must be greater than zero.");
   return SPArrayFilteredUsingBlock(self, block, FALSE, stride, queue);
@@ -837,20 +829,20 @@ invalid_set_mapping_serial:
 
 @implementation NSMutableArray (SPMutableArrayFilters)
 
-- (id)mapUsingBlock:(SPMapBlock)block
+- (id)mapTo:(SPMapBlock)block
 {
-  return [self mapUsingBlock:block queue:nil stride:NSFiltersDefaultStride];
+  return [self mapTo:block queue:nil stride:NSFiltersDefaultStride];
 }
 
-- (id)mapUsingBlock:(SPMapBlock)block queue:(dispatch_queue_t)queue
+- (id)mapTo:(SPMapBlock)block queue:(dispatch_queue_t)queue
 {
-  return [self mapUsingBlock:block queue:queue stride:NSFiltersDefaultStride];
+  return [self mapTo:block queue:queue stride:NSFiltersDefaultStride];
 }
 
 - (id)
-  mapUsingBlock:(SPMapBlock)block
-          queue:(dispatch_queue_t)queue
-         stride:(NSUInteger)stride
+   mapTo:(SPMapBlock)block
+   queue:(dispatch_queue_t)queue
+  stride:(NSUInteger)stride
 {
   NSAssert(stride > 0, @"Stride must be greater than zero.");
   SPMapArrayUsingBlock(
@@ -867,34 +859,34 @@ invalid_set_mapping_serial:
   return self;
 }
 
-- (id)rejectUsingBlock:(SPFilterBlock)block
+- (id)rejectBy:(SPFilterBlock)block
 {
   SPFilterArrayUsingBlock(self, block, TRUE, NSFiltersDefaultStride, nil);
   return self;
 }
 
-- (id)selectUsingBlock:(SPFilterBlock)block
+- (id)selectBy:(SPFilterBlock)block
 {
   SPFilterArrayUsingBlock(self, block, FALSE, NSFiltersDefaultStride, nil);
   return self;
 }
 
-- (id)rejectUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue
+- (id)rejectBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue
 {
   SPFilterArrayUsingBlock(self, block, TRUE, NSFiltersDefaultStride, queue);
   return self;
 }
 
-- (id)selectUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue
+- (id)selectBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue
 {
   SPFilterArrayUsingBlock(self, block, FALSE, NSFiltersDefaultStride, queue);
   return self;
 }
 
 - (id)
-  rejectUsingBlock:(SPFilterBlock)block
-  queue:(dispatch_queue_t)queue
-  stride:(NSUInteger)stride
+  rejectBy:(SPFilterBlock)block
+     queue:(dispatch_queue_t)queue
+    stride:(NSUInteger)stride
 {
   NSAssert(stride > 0, @"Stride must be greater than zero.");
   SPFilterArrayUsingBlock(self, block, TRUE, stride, queue);
@@ -902,9 +894,9 @@ invalid_set_mapping_serial:
 }
 
 - (id)
-  selectUsingBlock:(SPFilterBlock)block
-             queue:(dispatch_queue_t)queue
-            stride:(NSUInteger)stride
+  selectBy:(SPFilterBlock)block
+     queue:(dispatch_queue_t)queue
+    stride:(NSUInteger)stride
 {
   NSAssert(stride > 0, @"Stride must be greater than zero.");
   SPFilterArrayUsingBlock(self, block, FALSE, stride, queue);
@@ -915,24 +907,24 @@ invalid_set_mapping_serial:
 
 @implementation NSSet (SPImmutableSetFilters)
 
-- (NSSet *)mappedSetUsingBlock:(SPMapBlock)block
+- (NSSet *)mappedTo:(SPMapBlock)block
 {
-  return [self mappedSetUsingBlock:block
-                             queue:nil
-                            stride:NSFiltersDefaultStride];
+  return [self mappedTo:block
+                  queue:nil
+                 stride:NSFiltersDefaultStride];
 }
 
-- (NSSet *)mappedSetUsingBlock:(SPMapBlock)block queue:(dispatch_queue_t)queue
+- (NSSet *)mappedTo:(SPMapBlock)block queue:(dispatch_queue_t)queue
 {
-  return [self mappedSetUsingBlock:block
+  return [self mappedTo:block
                              queue:queue
                             stride:NSFiltersDefaultStride];
 }
 
 - (NSSet *)
-  mappedSetUsingBlock:(SPMapBlock)block
-                queue:(dispatch_queue_t)queue
-               stride:(NSUInteger)stride
+  mappedTo:(SPMapBlock)block
+     queue:(dispatch_queue_t)queue
+    stride:(NSUInteger)stride
 {
   __block NSSet *result = nil;
 
@@ -952,9 +944,9 @@ invalid_set_mapping_serial:
 }
 
 - (NSSet *)
-  rejectedSetUsingBlock:(SPFilterBlock)block
-                  queue:(dispatch_queue_t)queue
-                 stride:(NSUInteger)stride
+  rejectedBy:(SPFilterBlock)block
+       queue:(dispatch_queue_t)queue
+      stride:(NSUInteger)stride
 {
   __block NSSet *result = nil;
   SPFilterSetUsingBlock(
@@ -970,9 +962,9 @@ invalid_set_mapping_serial:
 }
 
 - (NSSet *)
-  selectedSetUsingBlock:(SPFilterBlock)block
-                  queue:(dispatch_queue_t)queue
-                 stride:(NSUInteger)stride
+  selectedBy:(SPFilterBlock)block
+       queue:(dispatch_queue_t)queue
+      stride:(NSUInteger)stride
 {
   __block NSSet *result = nil;
   SPFilterSetUsingBlock(
@@ -987,36 +979,24 @@ invalid_set_mapping_serial:
   return result;
 }
 
-- (NSSet *)
-  rejectedSetUsingBlock:(SPFilterBlock)block
-                  queue:(dispatch_queue_t)queue
+- (NSSet *)rejectedBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue
 {
-  return [self rejectedSetUsingBlock:block
-                               queue:queue
-                              stride:NSFiltersDefaultStride];
+  return [self rejectedBy:block queue:queue stride:NSFiltersDefaultStride];
 }
 
-- (NSSet *)
-  selectedSetUsingBlock:(SPFilterBlock)block
-                  queue:(dispatch_queue_t)queue
+- (NSSet *)selectedBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue
 {
-  return [self selectedSetUsingBlock:block
-                               queue:queue
-                              stride:NSFiltersDefaultStride];
+  return [self selectedBy:block queue:queue stride:NSFiltersDefaultStride];
 }
 
-- (NSSet *)rejectedSetUsingBlock:(SPFilterBlock)block
+- (NSSet *)rejectedBy:(SPFilterBlock)block
 {
-  return [self rejectedSetUsingBlock:block
-                               queue:nil
-                              stride:NSFiltersDefaultStride];
+  return [self rejectedBy:block queue:nil stride:NSFiltersDefaultStride];
 }
 
-- (NSSet *)selectedSetUsingBlock:(SPFilterBlock)block
+- (NSSet *)selectedBy:(SPFilterBlock)block
 {
-  return [self selectedSetUsingBlock:block
-                               queue:nil
-                              stride:NSFiltersDefaultStride];
+  return [self selectedBy:block queue:nil stride:NSFiltersDefaultStride];
 }
 
 - (id)reduceWithInitialValue:(id)memo usingBlock:(SPReduceBlock)block
@@ -1055,9 +1035,9 @@ invalid_set_mapping_serial:
 @implementation NSMutableSet (SPMutableSetFilters)
 
 - (id)
-  mapUsingBlock:(SPMapBlock)block
-          queue:(dispatch_queue_t)queue
-         stride:(NSUInteger)stride
+   mapTo:(SPMapBlock)block
+   queue:(dispatch_queue_t)queue
+  stride:(NSUInteger)stride
 {
   SPMapSetUsingBlock(
     self,
@@ -1077,16 +1057,11 @@ invalid_set_mapping_serial:
 }
 
 - (id)
-  rejectUsingBlock:(SPFilterBlock)block
-             queue:(dispatch_queue_t)queue
-            stride:(NSUInteger)stride
+  rejectBy:(SPFilterBlock)block
+     queue:(dispatch_queue_t)queue
+    stride:(NSUInteger)stride
 {
-  SPFilterSetUsingBlock(
-    self,
-    block,
-    TRUE,
-    stride,
-    queue,
+  SPFilterSetUsingBlock(self, block, TRUE, stride, queue,
     ^(const unsafe_id *objects, NSUInteger num_objects) {
       NSUInteger index = 0;
       for (; index < num_objects; ++index) {
@@ -1097,16 +1072,11 @@ invalid_set_mapping_serial:
 }
 
 - (id)
-  selectUsingBlock:(SPFilterBlock)block
-             queue:(dispatch_queue_t)queue
-            stride:(NSUInteger)stride
+  selectBy:(SPFilterBlock)block
+     queue:(dispatch_queue_t)queue
+    stride:(NSUInteger)stride
 {
-  SPFilterSetUsingBlock(
-    self,
-    block,
-    FALSE,
-    stride,
-    queue,
+  SPFilterSetUsingBlock(self, block, FALSE, stride, queue,
     ^(const unsafe_id *objects, NSUInteger num_objects) {
       NSUInteger index = 0;
       for (; index < num_objects; ++index) {
@@ -1116,38 +1086,34 @@ invalid_set_mapping_serial:
   return self;
 }
 
-- (id)mapUsingBlock:(SPMapBlock)block queue:(dispatch_queue_t)queue
+- (id)mapTo:(SPMapBlock)block queue:(dispatch_queue_t)queue
 {
-  return [self mapUsingBlock:block queue:queue stride:NSFiltersDefaultStride];
+  return [self mapTo:block queue:queue stride:NSFiltersDefaultStride];
 }
 
-- (id)rejectUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue
+- (id)rejectBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue
 {
-  return [self rejectUsingBlock:block
-                          queue:queue
-                         stride:NSFiltersDefaultStride];
+  return [self rejectBy:block queue:queue stride:NSFiltersDefaultStride];
 }
 
-- (id)selectUsingBlock:(SPFilterBlock)block queue:(dispatch_queue_t)queue
+- (id)selectBy:(SPFilterBlock)block queue:(dispatch_queue_t)queue
 {
-  return [self selectUsingBlock:block
-                          queue:queue
-                         stride:NSFiltersDefaultStride];
+  return [self selectBy:block queue:queue stride:NSFiltersDefaultStride];
 }
 
-- (id)mapUsingBlock:(SPMapBlock)block
+- (id)mapTo:(SPMapBlock)block
 {
-  return [self mapUsingBlock:block queue:nil stride:NSFiltersDefaultStride];
+  return [self mapTo:block queue:nil stride:NSFiltersDefaultStride];
 }
 
-- (id)rejectUsingBlock:(SPFilterBlock)block
+- (id)rejectBy:(SPFilterBlock)block
 {
-  return [self rejectUsingBlock:block queue:nil stride:NSFiltersDefaultStride];
+  return [self rejectBy:block queue:nil stride:NSFiltersDefaultStride];
 }
 
-- (id)selectUsingBlock:(SPFilterBlock)block
+- (id)selectBy:(SPFilterBlock)block
 {
-  return [self selectUsingBlock:block queue:nil stride:NSFiltersDefaultStride];
+  return [self selectBy:block queue:nil stride:NSFiltersDefaultStride];
 }
 
 @end

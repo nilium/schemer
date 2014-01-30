@@ -429,7 +429,7 @@ static NSArray *observedSchemeRulePaths()
     NSSet *filtered = oldRules;
 
     if (newRulesCount) {
-      filtered = [oldRules rejectedSetUsingBlock:^(id obj) {
+      filtered = [oldRules rejectedBy:^(id obj) {
         return [newRules containsObject:obj];
       }];
     }
@@ -443,7 +443,7 @@ static NSArray *observedSchemeRulePaths()
     NSSet *filtered = newRules;
 
     if (oldRulesCount) {
-      filtered = [newRules rejectedSetUsingBlock:^(id obj) {
+      filtered = [newRules rejectedBy:^(id obj) {
         return [oldRules containsObject:obj];
       }];
     }
