@@ -101,18 +101,25 @@ schemeFlagStringForFlags(uint32_t flags)
   if ((self = [self init])) {
     self.name = plist[@"name"];
     NSString *scope = (NSString *)plist[@"scope"];
-    NSCharacterSet *charset = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    self.selectors =
-    [[[scope componentsSeparatedByString:@","] mappedArrayUsingBlock:^id(id obj) {
-      return [obj stringByTrimmingCharactersInSet:charset];
-    }] selectedArrayUsingBlock:^BOOL(id obj) {
-      return [obj length] > 0;
-    }];
+    NSCharacterSet *charset = NSCharacterSet.whitespaceAndNewlineCharacterSet;
+
+    if (scope) {
+      self.selectors =
+        [[[scope componentsSeparatedByString:@","]
+          mappedArrayUsingBlock:^id(id obj) {
+            return [obj stringByTrimmingCharactersInSet:charset];
+          }] selectedArrayUsingBlock:^BOOL(id obj) {
+            return [obj length] > 0;
+          }];
+    }
 
     NSDictionary *settings = plist[@"settings"];
-    self.foreground = colorSetting(settings, @"foreground", self.foreground);
-    self.background = colorSetting(settings, @"background", self.background);
-    self.flags = @(schemeFlagsForString(settings[@"fontStyle"]));
+
+    if (settings) {
+      self.foreground = colorSetting(settings, @"foreground", self.foreground);
+      self.background = colorSetting(settings, @"background", self.background);
+      self.flags      = @(schemeFlagsForString(settings[@"fontStyle"]));
+    }
   }
   return self;
 }
