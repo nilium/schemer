@@ -359,6 +359,7 @@ static NSArray *observedSchemeRulePaths()
       [self rebindObservationFromOldScheme:oldScheme
                                toNewScheme:newScheme];
     } break;
+
     default: break;
     }
   } else if (object == self.scheme) {
@@ -367,8 +368,7 @@ static NSArray *observedSchemeRulePaths()
     if ([keyPath isEqualToString:@"rules"]) {
       NSArray *oldRules = [change[NSKeyValueChangeOldKey] selfIfNotNull];
       NSArray *newRules = [change[NSKeyValueChangeNewKey] selfIfNotNull];
-      [self rebindObservationFromOldRules:oldRules
-                               toNewRules:newRules];
+      [self rebindObservationFromOldRules:oldRules toNewRules:newRules];
 
       if (self.rulesTable && _midUpdate == 0) {
         [self.rulesTable reloadData];
