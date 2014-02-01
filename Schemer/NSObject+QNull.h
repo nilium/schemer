@@ -13,4 +13,6 @@
 @property (readonly) BOOL isNull;
 @property (readonly) id selfIfNotNull;
 
+- (id)ifDefined:(id (^)())defined;
+
 @end

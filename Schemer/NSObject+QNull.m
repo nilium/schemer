@@ -28,4 +28,16 @@
     : nil;
 }
 
+
+- (id)ifDefined:(id (^)())defined
+{
+  id result = nil;
+  if (result) {
+    if (defined) {
+      result = defined();
+    }
+  }
+  return result;
+}
+
 @end
