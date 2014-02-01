@@ -34,7 +34,6 @@
 
 @implementation QSelectorTableSource
 
-
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
   if (self.rule) {

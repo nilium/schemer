@@ -30,6 +30,7 @@
 
 #import "NSObject+QNull.h"
 
+
 @implementation NSObject (QNull)
 
 @dynamic isNull;

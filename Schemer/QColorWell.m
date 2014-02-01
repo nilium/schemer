@@ -30,6 +30,7 @@
 
 #import "QColorWell.h"
 
+
 @implementation QColorWell
 
 - (void)activate:(BOOL)exclusive

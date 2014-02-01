@@ -30,12 +30,14 @@
 
 #import <Foundation/Foundation.h>
 
+
 typedef NS_ENUM(uint32_t, QSchemeRuleFlags) {
   QNoFlags = 0,
   QBoldFlag = 1,
   QItalicFlag = 2,
   QUnderlineFlag = 4
 };
+
 
 @interface QSchemeRule : NSObject <NSCopying>
 

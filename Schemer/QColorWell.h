@@ -30,6 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+
 @interface QColorWell : NSColorWell
 
 @end

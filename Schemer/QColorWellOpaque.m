@@ -32,6 +32,7 @@
 
 @implementation QColorWellOpaque
 
+
 - (void)activate:(BOOL)exclusive
 {
   [NSColorPanel sharedColorPanel].showsAlpha = NO;

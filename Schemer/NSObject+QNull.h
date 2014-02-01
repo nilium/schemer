@@ -30,6 +30,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface NSObject (QNull)
 
 @property (readonly) BOOL isNull;

@@ -30,8 +30,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+
 @class QScheme;
 @class QRulesTableDelegate;
+
 
 @interface QDocument : NSDocument <NSTokenFieldDelegate>
 
