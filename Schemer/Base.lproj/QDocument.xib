@@ -17,18 +17,18 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" appearanceType="lightContent" animationBehavior="default" id="5" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="640" y="181" width="589" height="544"/>
+            <rect key="contentRect" x="640" y="181" width="589" height="726"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="6" userLabel="Content View">
-                <rect key="frame" x="0.0" y="0.0" width="589" height="544"/>
+                <rect key="frame" x="0.0" y="0.0" width="589" height="726"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <splitView autosaveName="splitsize" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3bN-Dv-mla">
-                        <rect key="frame" x="0.0" y="0.0" width="589" height="544"/>
+                        <rect key="frame" x="0.0" y="0.0" width="589" height="726"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView appearanceType="lightContent" id="aCY-al-TIp">
-                                <rect key="frame" x="0.0" y="0.0" width="360" height="544"/>
+                                <rect key="frame" x="0.0" y="0.0" width="360" height="726"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="cmu-jW-zJK">
@@ -62,14 +62,14 @@
                                         </connections>
                                     </button>
                                     <scrollView placeholderIntrinsicWidth="256" placeholderIntrinsicHeight="256" autohidesScrollers="YES" horizontalLineScroll="25" horizontalPageScroll="10" verticalLineScroll="25" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rte-M9-nys">
-                                        <rect key="frame" x="-1" y="20" width="362" height="524"/>
+                                        <rect key="frame" x="-1" y="20" width="362" height="706"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <clipView key="contentView" id="6yA-Gh-IKu">
-                                            <rect key="frame" x="1" y="17" width="360" height="506"/>
+                                            <rect key="frame" x="1" y="17" width="360" height="688"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowHeight="20" headerView="sJ0-qK-1DR" viewBased="YES" id="0by-wg-npY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="360" height="506"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="360" height="688"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="2" height="5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -200,7 +200,7 @@
                                 </constraints>
                             </customView>
                             <customView id="dOI-Qa-cdE">
-                                <rect key="frame" x="361" y="0.0" width="228" height="544"/>
+                                <rect key="frame" x="361" y="0.0" width="228" height="726"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button appearanceType="lightContent" translatesAutoresizingMaskIntoConstraints="NO" id="JxE-YU-fIP">
@@ -239,11 +239,11 @@
                                         </connections>
                                     </button>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="UKK-k1-dgu">
-                                        <rect key="frame" x="20" y="284" width="188" height="240"/>
+                                        <rect key="frame" x="20" y="342" width="188" height="364"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
-                                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="jzC-Ae-KhL" customClass="QColorWellOpaque">
-                                                <rect key="frame" x="117" y="217" width="71" height="23"/>
+                                            <colorWell misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jzC-Ae-KhL" customClass="QColorWellOpaque">
+                                                <rect key="frame" x="118" y="341" width="70" height="23"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="23" id="BED-sH-5cg"/>
@@ -255,8 +255,8 @@
                                                     <binding destination="-2" name="value" keyPath="self.scheme.backgroundColor" id="K2v-A9-uFc"/>
                                                 </connections>
                                             </colorWell>
-                                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="uWh-t5-E4F" customClass="QColorWellOpaque">
-                                                <rect key="frame" x="117" y="186" width="71" height="23"/>
+                                            <colorWell misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWh-t5-E4F" customClass="QColorWellOpaque">
+                                                <rect key="frame" x="118" y="310" width="70" height="23"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="23" id="Qw8-RL-1yp"/>
@@ -268,8 +268,8 @@
                                                     <binding destination="-2" name="value" keyPath="self.scheme.foregroundColor" id="QcB-Y0-o3s"/>
                                                 </connections>
                                             </colorWell>
-                                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="qtZ-WJ-g8e" customClass="QColorWell">
-                                                <rect key="frame" x="117" y="155" width="71" height="23"/>
+                                            <colorWell misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qtZ-WJ-g8e" customClass="QColorWell">
+                                                <rect key="frame" x="118" y="279" width="70" height="23"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="23" id="ndw-lj-BOe"/>
@@ -281,7 +281,7 @@
                                                 </connections>
                                             </colorWell>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3rb-sY-Dds">
-                                                <rect key="frame" x="-2" y="158" width="62" height="17"/>
+                                                <rect key="frame" x="-2" y="282" width="62" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="58" id="vB4-JL-yVe"/>
@@ -293,7 +293,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fC1-bz-Nuf">
-                                                <rect key="frame" x="-2" y="189" width="78" height="17"/>
+                                                <rect key="frame" x="-2" y="313" width="78" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="74" id="bTW-Jz-3NF"/>
@@ -305,7 +305,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O8y-7K-8tu">
-                                                <rect key="frame" x="-2" y="220" width="79" height="17"/>
+                                                <rect key="frame" x="-2" y="344" width="79" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="75" id="4lu-Wc-7T1"/>
@@ -316,8 +316,8 @@
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <colorWell appearanceType="lightContent" translatesAutoresizingMaskIntoConstraints="NO" id="ptK-9o-JwW" customClass="QColorWell">
-                                                <rect key="frame" x="117" y="124" width="71" height="23"/>
+                                            <colorWell appearanceType="lightContent" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ptK-9o-JwW" customClass="QColorWell">
+                                                <rect key="frame" x="118" y="248" width="70" height="23"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="23" id="TG5-QK-PWt"/>
@@ -329,7 +329,7 @@
                                                 </connections>
                                             </colorWell>
                                             <textField appearanceType="lightContent" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e3z-jI-ZcY">
-                                                <rect key="frame" x="-2" y="127" width="93" height="17"/>
+                                                <rect key="frame" x="-2" y="251" width="93" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="89" id="Edd-Zf-jkf"/>
@@ -340,8 +340,8 @@
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="ZAU-CP-mRf" customClass="QColorWell">
-                                                <rect key="frame" x="117" y="93" width="71" height="23"/>
+                                            <colorWell misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZAU-CP-mRf" customClass="QColorWell">
+                                                <rect key="frame" x="118" y="217" width="70" height="23"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="23" id="hu5-gW-00L"/>
@@ -353,8 +353,8 @@
                                                     <binding destination="-2" name="value" keyPath="self.scheme.selectionColor" id="hKZ-3u-GU3"/>
                                                 </connections>
                                             </colorWell>
-                                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="7II-LH-agI" customClass="QColorWell">
-                                                <rect key="frame" x="117" y="62" width="71" height="23"/>
+                                            <colorWell misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7II-LH-agI" customClass="QColorWell">
+                                                <rect key="frame" x="118" y="186" width="70" height="23"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="23" id="NXs-8P-zm6"/>
@@ -365,8 +365,8 @@
                                                     <binding destination="-2" name="value" keyPath="self.scheme.selectionBorderColor" id="ztx-of-Mh6"/>
                                                 </connections>
                                             </colorWell>
-                                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="RI5-kV-etf" customClass="QColorWell">
-                                                <rect key="frame" x="117" y="31" width="71" height="23"/>
+                                            <colorWell misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RI5-kV-etf" customClass="QColorWell">
+                                                <rect key="frame" x="118" y="155" width="70" height="23"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="23" id="v39-vl-x6i"/>
@@ -377,8 +377,8 @@
                                                     <binding destination="-2" name="value" keyPath="self.scheme.inactiveSelectionColor" id="R4D-1O-wX2"/>
                                                 </connections>
                                             </colorWell>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q5G-bZ-R6T">
-                                                <rect key="frame" x="-2" y="34" width="113" height="17"/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q5G-bZ-R6T">
+                                                <rect key="frame" x="-2" y="158" width="114" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="109" id="hn1-qv-M21"/>
@@ -390,7 +390,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="faz-qh-JJL">
-                                                <rect key="frame" x="-2" y="65" width="107" height="17"/>
+                                                <rect key="frame" x="-2" y="189" width="107" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="103" id="udf-WY-YIy"/>
@@ -402,7 +402,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7SP-SG-uEf">
-                                                <rect key="frame" x="-2" y="96" width="61" height="17"/>
+                                                <rect key="frame" x="-2" y="220" width="61" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="57" id="G1s-f0-xk9"/>
@@ -414,7 +414,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField appearanceType="lightContent" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GDj-mo-VkQ">
-                                                <rect key="frame" x="-2" y="3" width="38" height="17"/>
+                                                <rect key="frame" x="-2" y="127" width="38" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="34" id="4eB-kd-fNS"/>
@@ -425,8 +425,8 @@
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <colorWell appearanceType="lightContent" translatesAutoresizingMaskIntoConstraints="NO" id="Euc-Ds-hyi" customClass="QColorWell">
-                                                <rect key="frame" x="117" y="0.0" width="71" height="23"/>
+                                            <colorWell appearanceType="lightContent" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Euc-Ds-hyi" customClass="QColorWell">
+                                                <rect key="frame" x="118" y="124" width="70" height="23"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="23" id="hHV-fl-4MT"/>
@@ -438,11 +438,101 @@
                                                     <binding destination="-2" name="value" keyPath="self.scheme.caretColor" id="qor-wL-s08"/>
                                                 </connections>
                                             </colorWell>
+                                            <colorWell appearanceType="lightContent" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Yi-9h-SGV" customClass="QColorWell">
+                                                <rect key="frame" x="118" y="93" width="70" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="23" id="t6F-Ze-bM4"/>
+                                                </constraints>
+                                                <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <accessibility description="Selection Color"/>
+                                                <connections>
+                                                    <action selector="modifyColorWell:" target="-2" id="zxg-Qa-zaa"/>
+                                                    <binding destination="-2" name="value" keyPath="self.scheme.gutterBGColor" id="6Tc-9r-fy1"/>
+                                                </connections>
+                                            </colorWell>
+                                            <colorWell appearanceType="lightContent" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kgj-x0-hg1" customClass="QColorWell">
+                                                <rect key="frame" x="118" y="62" width="70" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="23" id="NoA-Xr-RQd"/>
+                                                </constraints>
+                                                <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <accessibility description="Selection Border Color"/>
+                                                <connections>
+                                                    <binding destination="-2" name="value" keyPath="self.scheme.gutterFGColor" id="fpy-5V-uV1"/>
+                                                </connections>
+                                            </colorWell>
+                                            <colorWell appearanceType="lightContent" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NlO-tx-mUN" customClass="QColorWell">
+                                                <rect key="frame" x="118" y="31" width="70" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="23" id="mcM-B4-ckw"/>
+                                                </constraints>
+                                                <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <accessibility description="Inactive Selection Color"/>
+                                                <connections>
+                                                    <binding destination="-2" name="value" keyPath="self.scheme.findHiliteBGColor" id="NIb-cc-lBl"/>
+                                                </connections>
+                                            </colorWell>
+                                            <textField appearanceType="lightContent" horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hYP-wM-yhm">
+                                                <rect key="frame" x="-2" y="34" width="114" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Find Highlight BG" id="LmS-Y0-6Ze">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField appearanceType="lightContent" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bx2-Qb-pLC">
+                                                <rect key="frame" x="-2" y="65" width="65" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Gutter FG" id="zdG-G4-hBs">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField appearanceType="lightContent" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RVB-rY-Wh9">
+                                                <rect key="frame" x="-2" y="96" width="65" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Gutter BG" id="cFy-Qs-Be4">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField appearanceType="lightContent" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="59N-3i-YBf">
+                                                <rect key="frame" x="-2" y="3" width="114" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Find Highlight FG" id="uPL-6O-zOk">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <colorWell appearanceType="lightContent" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hLv-se-5dk" customClass="QColorWell">
+                                                <rect key="frame" x="118" y="0.0" width="70" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="23" id="ge2-T7-3ML"/>
+                                                </constraints>
+                                                <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <accessibility description="Caret Color"/>
+                                                <connections>
+                                                    <action selector="modifyColorWell:" target="-2" id="cIM-03-ShG"/>
+                                                    <binding destination="-2" name="value" keyPath="self.scheme.findHiliteFGColor" id="Qi6-Qo-VmA"/>
+                                                </connections>
+                                            </colorWell>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="hYP-wM-yhm" firstAttribute="centerY" secondItem="NlO-tx-mUN" secondAttribute="centerY" id="0WE-Cq-hOY"/>
                                             <constraint firstItem="3rb-sY-Dds" firstAttribute="leading" secondItem="UKK-k1-dgu" secondAttribute="leading" id="1mc-Yq-h09"/>
                                             <constraint firstItem="RI5-kV-etf" firstAttribute="leading" secondItem="q5G-bZ-R6T" secondAttribute="trailing" constant="8" id="2MB-G7-UHb"/>
-                                            <constraint firstAttribute="height" constant="240" id="42L-ax-RLL"/>
+                                            <constraint firstItem="3Yi-9h-SGV" firstAttribute="trailing" secondItem="RI5-kV-etf" secondAttribute="trailing" id="2dd-AI-PtX"/>
+                                            <constraint firstAttribute="bottom" secondItem="hLv-se-5dk" secondAttribute="bottom" id="3Q1-Ao-fEA"/>
+                                            <constraint firstItem="kgj-x0-hg1" firstAttribute="centerY" secondItem="bx2-Qb-pLC" secondAttribute="centerY" id="41Y-Pi-di1"/>
+                                            <constraint firstAttribute="height" constant="364" id="42L-ax-RLL"/>
                                             <constraint firstItem="7SP-SG-uEf" firstAttribute="leading" secondItem="UKK-k1-dgu" secondAttribute="leading" id="52w-tl-kVt"/>
                                             <constraint firstAttribute="trailing" secondItem="ptK-9o-JwW" secondAttribute="trailing" id="5ja-gJ-2ks"/>
                                             <constraint firstItem="uWh-t5-E4F" firstAttribute="top" secondItem="jzC-Ae-KhL" secondAttribute="bottom" constant="8" id="6It-ZW-MVm"/>
@@ -454,45 +544,62 @@
                                             <constraint firstItem="RI5-kV-etf" firstAttribute="leading" secondItem="jzC-Ae-KhL" secondAttribute="leading" id="Bwg-41-15R"/>
                                             <constraint firstAttribute="trailing" secondItem="ZAU-CP-mRf" secondAttribute="trailing" id="CFQ-St-CY1"/>
                                             <constraint firstAttribute="trailing" secondItem="7II-LH-agI" secondAttribute="trailing" id="FEG-3X-GOE"/>
+                                            <constraint firstItem="59N-3i-YBf" firstAttribute="centerY" secondItem="hLv-se-5dk" secondAttribute="centerY" id="FSW-sD-y37"/>
                                             <constraint firstItem="q5G-bZ-R6T" firstAttribute="centerY" secondItem="RI5-kV-etf" secondAttribute="centerY" id="Gtq-fK-Bvz"/>
                                             <constraint firstItem="q5G-bZ-R6T" firstAttribute="leading" secondItem="UKK-k1-dgu" secondAttribute="leading" id="H9s-vO-kTD"/>
                                             <constraint firstItem="faz-qh-JJL" firstAttribute="leading" secondItem="UKK-k1-dgu" secondAttribute="leading" id="Hhn-d6-eua"/>
+                                            <constraint firstItem="NlO-tx-mUN" firstAttribute="leading" secondItem="hYP-wM-yhm" secondAttribute="trailing" constant="8" id="Lac-nq-Nxm"/>
+                                            <constraint firstItem="NlO-tx-mUN" firstAttribute="top" secondItem="kgj-x0-hg1" secondAttribute="bottom" constant="8" id="MQJ-bW-7ne"/>
+                                            <constraint firstItem="kgj-x0-hg1" firstAttribute="top" secondItem="3Yi-9h-SGV" secondAttribute="bottom" constant="8" id="PMC-1X-Wd8"/>
                                             <constraint firstAttribute="trailing" secondItem="jzC-Ae-KhL" secondAttribute="trailing" id="Qdb-Sq-Okq"/>
                                             <constraint firstItem="RI5-kV-etf" firstAttribute="top" secondItem="7II-LH-agI" secondAttribute="bottom" constant="8" id="WKJ-ei-gGy"/>
+                                            <constraint firstItem="3Yi-9h-SGV" firstAttribute="leading" secondItem="NlO-tx-mUN" secondAttribute="leading" id="X4x-Hq-zgi"/>
                                             <constraint firstAttribute="trailing" secondItem="RI5-kV-etf" secondAttribute="trailing" id="XeA-k8-iCj"/>
+                                            <constraint firstItem="hYP-wM-yhm" firstAttribute="leading" secondItem="q5G-bZ-R6T" secondAttribute="leading" id="YxS-Rn-grh"/>
                                             <constraint firstItem="RI5-kV-etf" firstAttribute="leading" secondItem="uWh-t5-E4F" secondAttribute="leading" id="Z2g-X4-oDq"/>
                                             <constraint firstItem="O8y-7K-8tu" firstAttribute="centerY" secondItem="jzC-Ae-KhL" secondAttribute="centerY" id="aLE-HM-bgd"/>
+                                            <constraint firstItem="NlO-tx-mUN" firstAttribute="leading" secondItem="hLv-se-5dk" secondAttribute="leading" id="ayn-2b-FOC"/>
                                             <constraint firstAttribute="trailing" secondItem="qtZ-WJ-g8e" secondAttribute="trailing" id="b6O-uN-J4N"/>
                                             <constraint firstItem="qtZ-WJ-g8e" firstAttribute="top" secondItem="uWh-t5-E4F" secondAttribute="bottom" constant="8" id="bIP-CZ-zwc"/>
+                                            <constraint firstItem="kgj-x0-hg1" firstAttribute="trailing" secondItem="RI5-kV-etf" secondAttribute="trailing" id="c96-iF-CR5"/>
+                                            <constraint firstItem="RI5-kV-etf" firstAttribute="trailing" secondItem="NlO-tx-mUN" secondAttribute="trailing" id="cdb-ow-z0J"/>
+                                            <constraint firstItem="hLv-se-5dk" firstAttribute="trailing" secondItem="RI5-kV-etf" secondAttribute="trailing" id="dSp-ZY-kTS"/>
                                             <constraint firstItem="O8y-7K-8tu" firstAttribute="leading" secondItem="UKK-k1-dgu" secondAttribute="leading" id="dWZ-Jq-Bdg"/>
                                             <constraint firstItem="qtZ-WJ-g8e" firstAttribute="centerY" secondItem="3rb-sY-Dds" secondAttribute="centerY" id="f6u-Do-S63"/>
                                             <constraint firstItem="7II-LH-agI" firstAttribute="leading" secondItem="RI5-kV-etf" secondAttribute="leading" id="g00-J8-C2R"/>
+                                            <constraint firstItem="59N-3i-YBf" firstAttribute="leading" secondItem="q5G-bZ-R6T" secondAttribute="leading" id="gF7-VW-sPR"/>
                                             <constraint firstItem="e3z-jI-ZcY" firstAttribute="leading" secondItem="UKK-k1-dgu" secondAttribute="leading" id="hRl-vC-TIi"/>
+                                            <constraint firstItem="3Yi-9h-SGV" firstAttribute="centerY" secondItem="RVB-rY-Wh9" secondAttribute="centerY" id="hYQ-Du-hUI"/>
                                             <constraint firstItem="jzC-Ae-KhL" firstAttribute="top" secondItem="UKK-k1-dgu" secondAttribute="top" id="iCi-3F-mgZ"/>
-                                            <constraint firstAttribute="bottom" secondItem="Euc-Ds-hyi" secondAttribute="bottom" id="iTX-0X-JgP"/>
                                             <constraint firstItem="GDj-mo-VkQ" firstAttribute="leading" secondItem="UKK-k1-dgu" secondAttribute="leading" id="jYZ-1g-z6c"/>
                                             <constraint firstItem="RI5-kV-etf" firstAttribute="leading" secondItem="Euc-Ds-hyi" secondAttribute="leading" id="nS1-Oj-FnX"/>
                                             <constraint firstAttribute="trailing" secondItem="uWh-t5-E4F" secondAttribute="trailing" id="o11-Hx-VAP"/>
                                             <constraint firstItem="e3z-jI-ZcY" firstAttribute="centerY" secondItem="ptK-9o-JwW" secondAttribute="centerY" id="od7-IB-Jm0"/>
+                                            <constraint firstItem="3Yi-9h-SGV" firstAttribute="top" secondItem="Euc-Ds-hyi" secondAttribute="bottom" constant="8" id="puN-jw-cW4"/>
                                             <constraint firstItem="ZAU-CP-mRf" firstAttribute="leading" secondItem="RI5-kV-etf" secondAttribute="leading" id="rgx-Oy-lLz"/>
                                             <constraint firstItem="RI5-kV-etf" firstAttribute="leading" secondItem="ptK-9o-JwW" secondAttribute="leading" id="sO6-iY-35u"/>
+                                            <constraint firstItem="Euc-Ds-hyi" firstAttribute="leading" secondItem="3Yi-9h-SGV" secondAttribute="leading" id="t03-EO-MwP"/>
                                             <constraint firstItem="GDj-mo-VkQ" firstAttribute="centerY" secondItem="Euc-Ds-hyi" secondAttribute="centerY" id="uKp-iL-ZrU"/>
                                             <constraint firstItem="7II-LH-agI" firstAttribute="centerY" secondItem="faz-qh-JJL" secondAttribute="centerY" id="vf4-gt-zBk"/>
+                                            <constraint firstItem="kgj-x0-hg1" firstAttribute="leading" secondItem="NlO-tx-mUN" secondAttribute="leading" id="vwP-wb-Li2"/>
                                             <constraint firstItem="fC1-bz-Nuf" firstAttribute="centerY" secondItem="uWh-t5-E4F" secondAttribute="centerY" id="w6R-Z9-Uat"/>
+                                            <constraint firstItem="RVB-rY-Wh9" firstAttribute="leading" secondItem="q5G-bZ-R6T" secondAttribute="leading" id="xP6-Oy-FHh"/>
                                             <constraint firstItem="Euc-Ds-hyi" firstAttribute="top" secondItem="RI5-kV-etf" secondAttribute="bottom" constant="8" id="z8o-J4-roW"/>
                                             <constraint firstItem="qtZ-WJ-g8e" firstAttribute="leading" secondItem="RI5-kV-etf" secondAttribute="leading" id="zAA-yk-6jh"/>
                                             <constraint firstItem="ptK-9o-JwW" firstAttribute="top" secondItem="qtZ-WJ-g8e" secondAttribute="bottom" constant="8" id="zQP-gx-I3M"/>
+                                            <constraint firstItem="bx2-Qb-pLC" firstAttribute="leading" secondItem="q5G-bZ-R6T" secondAttribute="leading" id="zUe-6Q-mGI"/>
+                                            <constraint firstItem="hLv-se-5dk" firstAttribute="top" secondItem="NlO-tx-mUN" secondAttribute="bottom" constant="8" id="zms-3y-SAe"/>
                                         </constraints>
                                     </customView>
                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6c7-DF-oUS">
-                                        <rect key="frame" x="-1" y="20" width="230" height="256"/>
+                                        <rect key="frame" x="-1" y="20" width="230" height="314"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <clipView key="contentView" id="SGo-oH-oW0">
-                                            <rect key="frame" x="1" y="17" width="228" height="238"/>
+                                            <rect key="frame" x="1" y="17" width="228" height="296"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" autosaveColumns="NO" headerView="meH-DY-GOa" id="ks0-7w-7Yu">
-                                                    <rect key="frame" x="0.0" y="0.0" width="228" height="238"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="228" height="296"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -530,7 +637,7 @@
                                             <rect key="frame" x="-7" y="2" width="0.0" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="8OO-9c-fad">
+                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="8OO-9c-fad">
                                             <rect key="frame" x="-14" y="9" width="15" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
