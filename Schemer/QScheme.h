@@ -45,6 +45,10 @@
 @property (copy) NSColor *inactiveSelectionColor;
 @property (copy) NSColor *invisiblesColor;
 @property (copy) NSColor *caretColor;
+@property (copy) NSColor *gutterFGColor;
+@property (copy) NSColor *gutterBGColor;
+@property (copy) NSColor *findHiliteFGColor;
+@property (copy) NSColor *findHiliteBGColor;
 
 @property (copy) NSArray *rules; // <QSchemeRule>
 

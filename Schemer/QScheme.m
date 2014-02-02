@@ -113,6 +113,7 @@ getRulesDictionaries(NSArray *settings)
 {
   if ((self = [super init])) {
     NSColor *black = [NSColor.blackColor forScheme];
+    NSColor *noColor = [[NSColor colorWithWhite:0.0 alpha:0.0] forScheme];
 
     self.foregroundColor = black;
     self.backgroundColor = [NSColor.whiteColor forScheme];
@@ -131,6 +132,12 @@ getRulesDictionaries(NSArray *settings)
       [[NSColor colorWithWhite:0.75f alpha:1.0f] forScheme];
 
     self.caretColor = black;
+
+    self.gutterBGColor = noColor;
+    self.gutterFGColor = noColor;
+
+    self.findHiliteBGColor = noColor;
+    self.findHiliteFGColor = noColor;
 
     self.uuid = [NSUUID UUID];
     self.rules = @[];
@@ -185,6 +192,18 @@ getRulesDictionaries(NSArray *settings)
       colorSetting(settings, @"invisibles", self.invisiblesColor);
 
     self.caretColor = colorSetting(settings, @"caret", self.caretColor);
+
+    self.gutterFGColor =
+      colorSetting(settings, @"gutterForeground", self.gutterFGColor);
+
+    self.gutterBGColor =
+      colorSetting(settings, @"gutter", self.gutterBGColor);
+
+    self.findHiliteFGColor =
+      colorSetting(settings, @"findHighlightForeground", self.findHiliteFGColor);
+
+    self.findHiliteBGColor =
+      colorSetting(settings, @"findHighlight", self.findHiliteBGColor);
 
     self.rules =
       [rules mappedTo:convertPListToRuleBlock queue:conversion_queue stride:16];
@@ -250,6 +269,10 @@ getRulesDictionaries(NSArray *settings)
   putColorIfVisible(settings, @"inactiveSelection", self.inactiveSelectionColor);
   putColorIfVisible(settings, @"invisibles", self.invisiblesColor);
   putColorIfVisible(settings, @"caret", self.caretColor);
+  putColorIfVisible(settings, @"gutterForeground", self.gutterFGColor);
+  putColorIfVisible(settings, @"gutter", self.gutterBGColor);
+  putColorIfVisible(settings, @"findHighlightForeground", self.findHiliteFGColor);
+  putColorIfVisible(settings, @"findHighlight", self.findHiliteBGColor);
 
   [baseRules addObject:@{ @"settings": settings }];
 

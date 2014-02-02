@@ -64,7 +64,11 @@ observedSchemePaths()
       @"selectionBorderColor",
       @"inactiveSelectionColor",
       @"invisiblesColor",
-      @"caretColor"
+      @"caretColor",
+      @"gutterFGColor",
+      @"gutterBGColor",
+      @"findHiliteFGColor",
+      @"findHiliteBGColor"
     ];
   });
   return paths;
