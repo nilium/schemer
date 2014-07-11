@@ -26,8 +26,6 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ===========================================================================*/
 
-/* QStringArraySource.m - Noel Cower */
-
 #import "QSelectorTableSource.h"
 #import "QSchemeRule.h"
 
