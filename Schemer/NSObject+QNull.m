@@ -55,10 +55,8 @@
 - (id)ifDefined:(id (^)())defined
 {
   id result = nil;
-  if (result) {
-    if (defined) {
-      result = defined();
-    }
+  if (defined) {
+    result = defined();
   }
   return result;
 }
